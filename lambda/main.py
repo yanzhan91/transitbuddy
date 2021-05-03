@@ -59,19 +59,17 @@ def fallback_handler(handler_input):
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
     # session_attr = handler_input.attributes_manager.session_attributes
-    slots = handler_input.request_envelope.request.intent.slots
 
     # session_attr['request'] = 'check_bus'
-    bus_id = slots['bus_id'].value
-    stop_id = slots['stop_id'].value
+    bus_id = get_slot_value(handler_input, 'bus_id') # slots['bus_id'].value
+    stop_id = get_slot_value(handler_input, 'stop_id') # slots['stop_id'].value
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
     return check_bus(handler_input, bus_id, stop_id)
 
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handle(handler_input):
-    slots = handler_input.request_envelope.request.intent.slots
-    preset_id = slots['preset_id'].value if 'preset_id' in slots and slots['preset_id'].value else 1
+    preset_id = get_slot_value(handler_input, 'preset_id', '1')
     user_id = handler_input.request_envelope.context.system.user.user_id
 
     logger.info(f'Getting Bus at preset {preset_id}...')
@@ -79,14 +77,30 @@ def get_bus_handle(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("SetBusIntent"))
 def set_bus_handle(handler_input):
-    slots = handler_input.request_envelope.request.intent.slots
-    bus_id = slots['bus_id'].value
-    stop_id = slots['stop_id'].value
-    preset_id = slots['preset_id'].value if 'preset_id' in slots else 1
+    bus_id = get_slot_value(handler_input, 'bus_id')
+    stop_id = get_slot_value(handler_input, 'stop_id')
+    preset_id = get_slot_value(handler_input, 'preset_id')
     user_id = handler_input.request_envelope.context.system.user.user_id
 
     logger.info(f'Setting Bus {bus_id} at {stop_id} for preset {preset_id}...')
     return set_bus(handler_input, user_id, bus_id, stop_id, preset_id)
+
+def get_slot_value(handler_input, key, default=None):
+    slots = handler_input.request_envelope.request.intent.slots
+    slot = slots[key]
+    if slot.resolutions:
+        matches = slot.resolutions.to_dict()['resolutions_per_authority'][0]['values']
+        # status_code = slot.resolutions.to_dict()['resolutions_per_authority'][0]['status']['code']
+        if not matches or len(matches) == 0:
+            slot_value = slot.value
+        return matches[0]['value']['name']
+    else:
+        slot_value =  slot.value
+    
+    if not slot_value:
+        return default
+    else:
+        return slot_value
 
 def respond(handler_input, response_file, data_map):
     return handler_input.generate_template_response(response_file, data_map, file_ext='jinja')

@@ -8,7 +8,7 @@
                     "slots": [
                         {
                             "name": "bus_id",
-                            "type": "AMAZON.NUMBER"
+                            "type": "BUS_NUMBERS"
                         },
                         {
                             "name": "stop_id",
@@ -26,7 +26,7 @@
                     "slots": [
                         {
                             "name": "bus_id",
-                            "type": "AMAZON.NUMBER"
+                            "type": "BUS_NUMBERS"
                         },
                         {
                             "name": "stop_id",
@@ -109,868 +109,1295 @@
                             "id": "1",
                             "name": {
                                 "value": "1",
-                                "synonyms": ["one"]
+                                "synonyms": [
+                                    "one"
+                                ]
                             }
                         },
                         {
                             "id": "2",
                             "name": {
                                 "value": "2",
-                                "synonyms": ["two"]
+                                "synonyms": [
+                                    "two"
+                                ]
                             }
                         },
                         {
                             "id": "3",
                             "name": {
                                 "value": "3",
-                                "synonyms": ["three"]
+                                "synonyms": [
+                                    "three"
+                                ]
                             }
                         },
                         {
                             "id": "4",
                             "name": {
                                 "value": "4",
-                                "synonyms": ["four"]
+                                "synonyms": [
+                                    "four"
+                                ]
                             }
                         },
                         {
                             "id": "5",
                             "name": {
                                 "value": "5",
-                                "synonyms": ["five"]
+                                "synonyms": [
+                                    "five"
+                                ]
                             }
                         },
                         {
                             "id": "6",
                             "name": {
                                 "value": "6",
-                                "synonyms": ["six"]
+                                "synonyms": [
+                                    "six"
+                                ]
                             }
                         },
                         {
                             "id": "7",
                             "name": {
                                 "value": "7",
-                                "synonyms": ["seven"]
+                                "synonyms": [
+                                    "seven"
+                                ]
                             }
                         },
                         {
                             "id": "8",
                             "name": {
                                 "value": "8",
-                                "synonyms": ["eight"]
+                                "synonyms": [
+                                    "eight"
+                                ]
                             }
                         },
                         {
                             "id": "8A",
                             "name": {
                                 "value": "8A",
-                                "synonyms": ["eight a"]
+                                "synonyms": [
+                                    "eight a"
+                                ]
                             }
                         },
                         {
                             "id": "9",
                             "name": {
                                 "value": "9",
-                                "synonyms": ["nine"]
+                                "synonyms": [
+                                    "nine"
+                                ]
                             }
                         },
                         {
                             "id": "X9",
                             "name": {
                                 "value": "X9",
-                                "synonyms": ["x nine"]
+                                "synonyms": [
+                                    "x nine"
+                                ]
                             }
                         },
                         {
                             "id": "11",
                             "name": {
                                 "value": "11",
-                                "synonyms": ["eleven", "one one"]
+                                "synonyms": [
+                                    "eleven",
+                                    "one one"
+                                ]
                             }
                         },
                         {
                             "id": "12",
                             "name": {
                                 "value": "12",
-                                "synonyms": ["twelve", "one two"]
+                                "synonyms": [
+                                    "twelve",
+                                    "one two"
+                                ]
                             }
                         },
                         {
                             "id": "J14",
                             "name": {
                                 "value": "J14",
-                                "synonyms": ["jay fourteen", "jay one four"]
+                                "synonyms": [
+                                    "jay fourteen",
+                                    "jay one four"
+                                ]
                             }
                         },
                         {
                             "id": "15",
                             "name": {
                                 "value": "15",
-                                "synonyms": ["fifteen", "one five"]
+                                "synonyms": [
+                                    "fifteen",
+                                    "one five"
+                                ]
                             }
                         },
                         {
                             "id": "18",
                             "name": {
                                 "value": "18",
-                                "synonyms": ["eighteen", "one eight"]
+                                "synonyms": [
+                                    "eighteen",
+                                    "one eight"
+                                ]
                             }
                         },
                         {
                             "id": "19",
                             "name": {
                                 "value": "19",
-                                "synonyms": ["nineteen", "one nine"]
+                                "synonyms": [
+                                    "nineteen",
+                                    "one nine"
+                                ]
                             }
                         },
                         {
                             "id": "20",
                             "name": {
                                 "value": "20",
-                                "synonyms": ["twenty", "two zero"]
+                                "synonyms": [
+                                    "twenty",
+                                    "two zero"
+                                ]
                             }
                         },
                         {
                             "id": "21",
                             "name": {
                                 "value": "21",
-                                "synonyms": ["twenty one", "two one"]
+                                "synonyms": [
+                                    "twenty one",
+                                    "two one"
+                                ]
                             }
                         },
                         {
                             "id": "22",
                             "name": {
                                 "value": "22",
-                                "synonyms": ["twenty two", "two two"]
+                                "synonyms": [
+                                    "twenty two",
+                                    "two two"
+                                ]
                             }
                         },
                         {
                             "id": "24",
                             "name": {
                                 "value": "24",
-                                "synonyms": ["twenty four", "two four"]
+                                "synonyms": [
+                                    "twenty four",
+                                    "two four"
+                                ]
                             }
                         },
                         {
                             "id": "26",
                             "name": {
                                 "value": "26",
-                                "synonyms": ["twenty six", "two six"]
+                                "synonyms": [
+                                    "twenty six",
+                                    "two six"
+                                ]
                             }
                         },
                         {
                             "id": "28",
                             "name": {
                                 "value": "28",
-                                "synonyms": ["twenty eight", "two eight"]
+                                "synonyms": [
+                                    "twenty eight",
+                                    "two eight"
+                                ]
                             }
                         },
                         {
                             "id": "29",
                             "name": {
                                 "value": "29",
-                                "synonyms": ["twenty nine", "two nine"]
+                                "synonyms": [
+                                    "twenty nine",
+                                    "two nine"
+                                ]
                             }
                         },
                         {
                             "id": "30",
                             "name": {
                                 "value": "30",
-                                "synonyms": ["thirty", "three zero"]
+                                "synonyms": [
+                                    "thirty",
+                                    "three zero"
+                                ]
                             }
                         },
                         {
                             "id": "31",
                             "name": {
                                 "value": "31",
-                                "synonyms": ["thirty one", "three one"]
+                                "synonyms": [
+                                    "thirty one",
+                                    "three one"
+                                ]
                             }
                         },
                         {
                             "id": "34",
                             "name": {
                                 "value": "34",
-                                "synonyms": ["thirty four", "three four"]
+                                "synonyms": [
+                                    "thirty four",
+                                    "three four"
+                                ]
                             }
                         },
                         {
                             "id": "35",
                             "name": {
                                 "value": "35",
-                                "synonyms": ["thirty five", "three five"]
+                                "synonyms": [
+                                    "thirty five",
+                                    "three five"
+                                ]
                             }
                         },
                         {
                             "id": "36",
                             "name": {
                                 "value": "36",
-                                "synonyms": ["thirty six", "three six"]
+                                "synonyms": [
+                                    "thirty six",
+                                    "three six"
+                                ]
                             }
                         },
                         {
                             "id": "37",
                             "name": {
                                 "value": "37",
-                                "synonyms": ["thirty seven", "three seven"]
+                                "synonyms": [
+                                    "thirty seven",
+                                    "three seven"
+                                ]
                             }
                         },
                         {
                             "id": "39",
                             "name": {
                                 "value": "39",
-                                "synonyms": ["thirty nine", "three nine"]
+                                "synonyms": [
+                                    "thirty nine",
+                                    "three nine"
+                                ]
                             }
                         },
                         {
                             "id": "43",
                             "name": {
                                 "value": "43",
-                                "synonyms": ["forty three", "four three"]
+                                "synonyms": [
+                                    "forty three",
+                                    "four three"
+                                ]
                             }
                         },
                         {
                             "id": "44",
                             "name": {
                                 "value": "44",
-                                "synonyms": ["forty four", "four four"]
+                                "synonyms": [
+                                    "forty four",
+                                    "four four"
+                                ]
                             }
                         },
                         {
                             "id": "47",
                             "name": {
                                 "value": "47",
-                                "synonyms": ["forty seven", "four seven"]
+                                "synonyms": [
+                                    "forty seven",
+                                    "four seven"
+                                ]
                             }
                         },
                         {
                             "id": "48",
                             "name": {
                                 "value": "48",
-                                "synonyms": ["forty eight", "four eight"]
+                                "synonyms": [
+                                    "forty eight",
+                                    "four eight"
+                                ]
                             }
                         },
                         {
                             "id": "49",
                             "name": {
                                 "value": "49",
-                                "synonyms": ["forty nine", "four nine"]
+                                "synonyms": [
+                                    "forty nine",
+                                    "four nine"
+                                ]
                             }
                         },
                         {
                             "id": "49B",
                             "name": {
                                 "value": "49B",
-                                "synonyms": ["forty nine bee", "four nine bee"]
+                                "synonyms": [
+                                    "forty nine bee",
+                                    "four nine bee"
+                                ]
                             }
                         },
                         {
                             "id": "X49",
                             "name": {
                                 "value": "X49",
-                                "synonyms": ["ex fourty nine", "ex four nine"]
+                                "synonyms": [
+                                    "ex forty nine",
+                                    "ex four nine"
+                                ]
                             }
                         },
                         {
                             "id": "50",
                             "name": {
                                 "value": "50",
-                                "synonyms": ["fifty", "five zero"]
+                                "synonyms": [
+                                    "fifty",
+                                    "five zero"
+                                ]
                             }
                         },
                         {
                             "id": "51",
                             "name": {
                                 "value": "51",
-                                "synonyms": ["fifty one", "five one"]
+                                "synonyms": [
+                                    "fifty one",
+                                    "five one"
+                                ]
                             }
                         },
                         {
                             "id": "52",
                             "name": {
                                 "value": "52",
-                                "synonyms": ["fifty two", "five two"]
+                                "synonyms": [
+                                    "fifty two",
+                                    "five two"
+                                ]
                             }
                         },
                         {
                             "id": "52A",
                             "name": {
                                 "value": "52A",
-                                "synonyms": ["fifty two a", "five two a"]
+                                "synonyms": [
+                                    "fifty two a",
+                                    "five two a"
+                                ]
                             }
                         },
                         {
                             "id": "53",
                             "name": {
                                 "value": "53",
-                                "synonyms": ["fifty three", "five three"]
+                                "synonyms": [
+                                    "fifty three",
+                                    "five three"
+                                ]
                             }
                         },
                         {
                             "id": "53A",
                             "name": {
                                 "value": "53A",
-                                "synonyms": ["fifty three a", "five three a"]
+                                "synonyms": [
+                                    "fifty three a",
+                                    "five three a"
+                                ]
                             }
                         },
                         {
                             "id": "54",
                             "name": {
                                 "value": "54",
-                                "synonyms": ["fifty four", "five four"]
+                                "synonyms": [
+                                    "fifty four",
+                                    "five four"
+                                ]
                             }
                         },
                         {
                             "id": "54A",
                             "name": {
                                 "value": "54A",
-                                "synonyms": ["fifty four a", "five four a"]
+                                "synonyms": [
+                                    "fifty four a",
+                                    "five four a",
+                                    "50 4a",
+                                    "54 a"
+                                ]
                             }
                         },
                         {
                             "id": "54B",
                             "name": {
                                 "value": "54B",
-                                "synonyms": ["fifty four bee", "five four bee"]
+                                "synonyms": [
+                                    "fifty four bee",
+                                    "five four bee"
+                                ]
                             }
                         },
                         {
                             "id": "55",
                             "name": {
                                 "value": "55",
-                                "synonyms": ["fifty five", "five five"]
+                                "synonyms": [
+                                    "fifty five",
+                                    "five five"
+                                ]
                             }
                         },
                         {
                             "id": "55A",
                             "name": {
                                 "value": "55A",
-                                "synonyms": ["fifty five a", "five five a"]
+                                "synonyms": [
+                                    "fifty five a",
+                                    "five five a"
+                                ]
                             }
                         },
                         {
                             "id": "55N",
                             "name": {
                                 "value": "55N",
-                                "synonyms": ["fifty five an", "five five an"]
+                                "synonyms": [
+                                    "fifty five an",
+                                    "five five an"
+                                ]
                             }
                         },
                         {
                             "id": "56",
                             "name": {
                                 "value": "56",
-                                "synonyms": ["fifty six", "five six"]
+                                "synonyms": [
+                                    "fifty six",
+                                    "five six"
+                                ]
                             }
                         },
                         {
                             "id": "57",
                             "name": {
                                 "value": "57",
-                                "synonyms": ["fifty seven", "five seven"]
+                                "synonyms": [
+                                    "fifty seven",
+                                    "five seven"
+                                ]
                             }
                         },
                         {
                             "id": "59",
                             "name": {
                                 "value": "59",
-                                "synonyms": ["fifty nine", "five nine"]
+                                "synonyms": [
+                                    "fifty nine",
+                                    "five nine"
+                                ]
                             }
                         },
                         {
                             "id": "60",
                             "name": {
                                 "value": "60",
-                                "synonyms": ["sixty", "six zero"]
+                                "synonyms": [
+                                    "sixty",
+                                    "six zero"
+                                ]
                             }
                         },
                         {
                             "id": "62",
                             "name": {
                                 "value": "62",
-                                "synonyms": ["sixty two", "six two"]
+                                "synonyms": [
+                                    "sixty two",
+                                    "six two"
+                                ]
                             }
                         },
                         {
                             "id": "62H",
                             "name": {
                                 "value": "62H",
-                                "synonyms": ["sixty two H", "six two H"]
+                                "synonyms": [
+                                    "sixty two H",
+                                    "six two H"
+                                ]
                             }
                         },
                         {
                             "id": "63",
                             "name": {
                                 "value": "63",
-                                "synonyms": ["sixty three", "six three"]
+                                "synonyms": [
+                                    "sixty three",
+                                    "six three"
+                                ]
                             }
                         },
                         {
                             "id": "63W",
                             "name": {
                                 "value": "63W",
-                                "synonyms": ["sixty three double you", "six three double you"]
+                                "synonyms": [
+                                    "sixty three double you",
+                                    "six three double you"
+                                ]
                             }
                         },
                         {
                             "id": "65",
                             "name": {
                                 "value": "65",
-                                "synonyms": ["sixty five", "six five"]
+                                "synonyms": [
+                                    "sixty five",
+                                    "six five"
+                                ]
                             }
                         },
                         {
                             "id": "66",
                             "name": {
                                 "value": "66",
-                                "synonyms": ["sixty six", "six six"]
+                                "synonyms": [
+                                    "sixty six",
+                                    "six six"
+                                ]
                             }
                         },
                         {
                             "id": "67",
                             "name": {
                                 "value": "67",
-                                "synonyms": ["sixty seven", "six seven"]
+                                "synonyms": [
+                                    "sixty seven",
+                                    "six seven"
+                                ]
                             }
                         },
                         {
                             "id": "68",
                             "name": {
                                 "value": "68",
-                                "synonyms": ["sixty eight", "six eight"]
+                                "synonyms": [
+                                    "sixty eight",
+                                    "six eight"
+                                ]
                             }
                         },
                         {
                             "id": "70",
                             "name": {
                                 "value": "70",
-                                "synonyms": ["seventy", "seven zero"]
+                                "synonyms": [
+                                    "seventy",
+                                    "seven zero"
+                                ]
                             }
                         },
                         {
                             "id": "71",
                             "name": {
                                 "value": "71",
-                                "synonyms": ["seventy one", "seven one"]
+                                "synonyms": [
+                                    "seventy one",
+                                    "seven one"
+                                ]
                             }
                         },
                         {
                             "id": "72",
                             "name": {
                                 "value": "72",
-                                "synonyms": ["seventy two", "seven two"]
+                                "synonyms": [
+                                    "seventy two",
+                                    "seven two"
+                                ]
                             }
                         },
                         {
                             "id": "73",
                             "name": {
                                 "value": "73",
-                                "synonyms": ["seventy three", "seven three"]
+                                "synonyms": [
+                                    "seventy three",
+                                    "seven three"
+                                ]
                             }
                         },
                         {
                             "id": "74",
                             "name": {
                                 "value": "74",
-                                "synonyms": ["seventy four", "seven four"]
+                                "synonyms": [
+                                    "seventy four",
+                                    "seven four"
+                                ]
                             }
                         },
                         {
                             "id": "75",
                             "name": {
                                 "value": "75",
-                                "synonyms": ["seventy five", "seven five"]
+                                "synonyms": [
+                                    "seventy five",
+                                    "seven five"
+                                ]
                             }
                         },
                         {
                             "id": "76",
                             "name": {
                                 "value": "76",
-                                "synonyms": ["seventy six", "seven six"]
+                                "synonyms": [
+                                    "seventy six",
+                                    "seven six"
+                                ]
                             }
                         },
                         {
                             "id": "77",
                             "name": {
                                 "value": "77",
-                                "synonyms": ["seventy seven", "seven seven"]
+                                "synonyms": [
+                                    "seventy seven",
+                                    "seven seven"
+                                ]
                             }
                         },
                         {
                             "id": "78",
                             "name": {
                                 "value": "78",
-                                "synonyms": ["seventy eight", "seven eight"]
+                                "synonyms": [
+                                    "seventy eight",
+                                    "seven eight"
+                                ]
                             }
                         },
                         {
                             "id": "79",
                             "name": {
                                 "value": "79",
-                                "synonyms": ["seventy nine", "seven nine"]
+                                "synonyms": [
+                                    "seventy nine",
+                                    "seven nine"
+                                ]
                             }
                         },
                         {
                             "id": "80",
                             "name": {
                                 "value": "80",
-                                "synonyms": ["eighty", "eight zero"]
+                                "synonyms": [
+                                    "eighty",
+                                    "eight zero"
+                                ]
                             }
                         },
                         {
                             "id": "81",
                             "name": {
                                 "value": "81",
-                                "synonyms": ["eighty one", "eight one"]
+                                "synonyms": [
+                                    "eighty one",
+                                    "eight one"
+                                ]
                             }
                         },
                         {
                             "id": "81W",
                             "name": {
                                 "value": "81W",
-                                "synonyms": ["eighty one double you", "eight one double you"]
+                                "synonyms": [
+                                    "eighty one double you",
+                                    "eight one double you"
+                                ]
                             }
                         },
                         {
                             "id": "82",
                             "name": {
                                 "value": "82",
-                                "synonyms": ["eighty two", "eight two"]
+                                "synonyms": [
+                                    "eighty two",
+                                    "eight two"
+                                ]
                             }
                         },
                         {
                             "id": "84",
                             "name": {
                                 "value": "84",
-                                "synonyms": ["eighty four", "eight four"]
+                                "synonyms": [
+                                    "eighty four",
+                                    "eight four"
+                                ]
                             }
                         },
                         {
                             "id": "85",
                             "name": {
                                 "value": "85",
-                                "synonyms": ["eighty five", "eight five"]
+                                "synonyms": [
+                                    "eighty five",
+                                    "eight five"
+                                ]
                             }
                         },
                         {
                             "id": "85A",
                             "name": {
                                 "value": "85A",
-                                "synonyms": ["eighty five a", "eight five a"]
+                                "synonyms": [
+                                    "eighty five a",
+                                    "eight five a"
+                                ]
                             }
                         },
                         {
                             "id": "86",
                             "name": {
                                 "value": "86",
-                                "synonyms": ["eighty six", "eight six"]
+                                "synonyms": [
+                                    "eighty six",
+                                    "eight six"
+                                ]
                             }
                         },
                         {
                             "id": "87",
                             "name": {
                                 "value": "87",
-                                "synonyms": ["eighty seven", "eight seven"]
+                                "synonyms": [
+                                    "eighty seven",
+                                    "eight seven"
+                                ]
                             }
                         },
                         {
                             "id": "88",
                             "name": {
                                 "value": "88",
-                                "synonyms": ["eighty eight", "eight eight"]
+                                "synonyms": [
+                                    "eighty eight",
+                                    "eight eight"
+                                ]
                             }
                         },
                         {
                             "id": "90",
                             "name": {
                                 "value": "90",
-                                "synonyms": ["ninety", "nine zero"]
+                                "synonyms": [
+                                    "ninety",
+                                    "nine zero"
+                                ]
                             }
                         },
                         {
                             "id": "91",
                             "name": {
                                 "value": "91",
-                                "synonyms": ["ninety one", "nine one"]
+                                "synonyms": [
+                                    "ninety one",
+                                    "nine one"
+                                ]
                             }
                         },
                         {
                             "id": "92",
                             "name": {
                                 "value": "92",
-                                "synonyms": ["ninety two", "nine two"]
+                                "synonyms": [
+                                    "ninety two",
+                                    "nine two"
+                                ]
                             }
                         },
                         {
                             "id": "93",
                             "name": {
                                 "value": "93",
-                                "synonyms": ["ninety three", "nine three"]
+                                "synonyms": [
+                                    "ninety three",
+                                    "nine three"
+                                ]
                             }
                         },
                         {
                             "id": "94",
                             "name": {
                                 "value": "94",
-                                "synonyms": ["ninety four", "nine four"]
+                                "synonyms": [
+                                    "ninety four",
+                                    "nine four"
+                                ]
                             }
                         },
                         {
                             "id": "95",
                             "name": {
                                 "value": "95",
-                                "synonyms": ["ninety five", "nine five"]
+                                "synonyms": [
+                                    "ninety five",
+                                    "nine five"
+                                ]
                             }
                         },
                         {
                             "id": "96",
                             "name": {
                                 "value": "96",
-                                "synonyms": ["ninety six", "nine six"]
+                                "synonyms": [
+                                    "ninety six",
+                                    "nine six"
+                                ]
                             }
                         },
                         {
                             "id": "97",
                             "name": {
                                 "value": "97",
-                                "synonyms": ["ninety seven", "nine seven"]
+                                "synonyms": [
+                                    "ninety seven",
+                                    "nine seven"
+                                ]
                             }
                         },
                         {
                             "id": "X98",
                             "name": {
                                 "value": "X98",
-                                "synonyms": ["ex ninety eight", "ex nine eight"]
+                                "synonyms": [
+                                    "ex ninety eight",
+                                    "ex nine eight"
+                                ]
                             }
                         },
                         {
                             "id": "100",
                             "name": {
                                 "value": "100",
-                                "synonyms": ["one hundred", "one zero zero"]
+                                "synonyms": [
+                                    "one hundred",
+                                    "one zero zero"
+                                ]
                             }
                         },
                         {
                             "id": "103",
                             "name": {
                                 "value": "103",
-                                "synonyms": ["one hundred three", "one hundred and three", "one zero three"]
+                                "synonyms": [
+                                    "one hundred three",
+                                    "one hundred and three",
+                                    "one zero three",
+                                    "one oh three"
+                                ]
                             }
                         },
                         {
                             "id": "106",
                             "name": {
                                 "value": "106",
-                                "synonyms": ["one hundred six", "one hundred and six", "one zero six"]
+                                "synonyms": [
+                                    "one hundred six",
+                                    "one hundred and six",
+                                    "one zero six",
+                                    "one oh six"
+                                ]
                             }
                         },
                         {
                             "id": "108",
                             "name": {
                                 "value": "108",
-                                "synonyms": ["one hundred eight", "one hundred and eight", "one zero eight"]
+                                "synonyms": [
+                                    "one hundred eight",
+                                    "one hundred and eight",
+                                    "one zero eight",
+                                    "one oh eight"
+                                ]
                             }
                         },
                         {
                             "id": "111",
                             "name": {
                                 "value": "111",
-                                "synonyms": ["one hundred eleven", "one hundred and eleven", "one one one"]
+                                "synonyms": [
+                                    "one hundred eleven",
+                                    "one hundred and eleven",
+                                    "one one one",
+                                    "one eleven"
+                                ]
                             }
                         },
                         {
                             "id": "111A",
                             "name": {
                                 "value": "111A",
-                                "synonyms": ["one hundred eleven a", "one hundred and eleven a", "one one one a"]
+                                "synonyms": [
+                                    "one hundred eleven a",
+                                    "one hundred and eleven a",
+                                    "one one one a",
+                                    "one eleven a"
+                                ]
                             }
                         },
                         {
                             "id": "112",
                             "name": {
                                 "value": "112",
-                                "synonyms": ["one hundred twelve", "one hundred and twelve", "one one two"]
+                                "synonyms": [
+                                    "one hundred twelve",
+                                    "one hundred and twelve",
+                                    "one one two",
+                                    "one twelve"
+                                ]
                             }
                         },
                         {
                             "id": "115",
                             "name": {
                                 "value": "115",
-                                "synonyms": ["one hundred fifteen", "one hundred and fifteen", "one one five"]
+                                "synonyms": [
+                                    "one hundred fifteen",
+                                    "one hundred and fifteen",
+                                    "one one five",
+                                    "one fifteen"
+                                ]
                             }
                         },
                         {
                             "id": "119",
                             "name": {
                                 "value": "119",
-                                "synonyms": ["one hundred nineteen", "one hundred and nineteen", "one one nine"]
+                                "synonyms": [
+                                    "one hundred nineteen",
+                                    "one hundred and nineteen",
+                                    "one one nine",
+                                    "one nineteen"
+                                ]
                             }
                         },
                         {
                             "id": "120",
                             "name": {
                                 "value": "120",
-                                "synonyms": ["one hundred twenty", "one hundred and twenty", "one two zero"]
+                                "synonyms": [
+                                    "one hundred twenty",
+                                    "one hundred and twenty",
+                                    "one two zero",
+                                    "one twenty"
+                                ]
                             }
                         },
                         {
                             "id": "121",
                             "name": {
                                 "value": "121",
-                                "synonyms": ["one hundred twenty one", "one hundred and twenty one", "one two one"]
+                                "synonyms": [
+                                    "one hundred twenty one",
+                                    "one hundred and twenty one",
+                                    "one two one",
+                                    "one twenty one"
+                                ]
                             }
                         },
                         {
                             "id": "124",
                             "name": {
                                 "value": "124",
-                                "synonyms": ["one hundred twenty four", "one hundred and twenty four", "one two four"]
+                                "synonyms": [
+                                    "one hundred twenty four",
+                                    "one hundred and twenty four",
+                                    "one two four",
+                                    "one twenty four"
+                                ]
                             }
                         },
                         {
                             "id": "125",
                             "name": {
                                 "value": "125",
-                                "synonyms": ["one hundred twenty five", "one hundred and twenty five", "one two five"]
+                                "synonyms": [
+                                    "one hundred twenty five",
+                                    "one hundred and twenty five",
+                                    "one two five",
+                                    "one twenty five"
+                                ]
                             }
                         },
                         {
                             "id": "126",
                             "name": {
                                 "value": "126",
-                                "synonyms": ["one hundred twenty six", "one hundred and twenty six", "one two six"]
+                                "synonyms": [
+                                    "one hundred twenty six",
+                                    "one hundred and twenty six",
+                                    "one two six",
+                                    "one twenty six"
+                                ]
                             }
                         },
                         {
                             "id": "134",
                             "name": {
                                 "value": "134",
-                                "synonyms": ["one hundred thirty four", "one hundred and thirty four", "one three four"]
+                                "synonyms": [
+                                    "one hundred thirty four",
+                                    "one hundred and thirty four",
+                                    "one three four",
+                                    "one thirty four"
+                                ]
                             }
                         },
                         {
                             "id": "135",
                             "name": {
                                 "value": "135",
-                                "synonyms": ["one hundred thirty five", "one hundred and thirty five", "one three five"]
+                                "synonyms": [
+                                    "one hundred thirty five",
+                                    "one hundred and thirty five",
+                                    "one three five",
+                                    "one thirty five"
+                                ]
                             }
                         },
                         {
                             "id": "136",
                             "name": {
                                 "value": "136",
-                                "synonyms": ["one hundred thirty six", "one hundred and thirty six", "one three six"]
+                                "synonyms": [
+                                    "one hundred thirty six",
+                                    "one hundred and thirty six",
+                                    "one three six",
+                                    "one thirty six"
+                                ]
                             }
                         },
                         {
                             "id": "143",
                             "name": {
                                 "value": "143",
-                                "synonyms": ["one hundred forty three", "one hundred and forty three", "one four three"]
+                                "synonyms": [
+                                    "one hundred forty three",
+                                    "one hundred and forty three",
+                                    "one four three",
+                                    "one forty three"
+                                ]
                             }
                         },
                         {
                             "id": "146",
                             "name": {
                                 "value": "146",
-                                "synonyms": ["one hundred forty six", "one hundred and forty six", "one four six"]
+                                "synonyms": [
+                                    "one hundred forty six",
+                                    "one hundred and forty six",
+                                    "one four six",
+                                    "one forty six"
+                                ]
                             }
                         },
                         {
                             "id": "147",
                             "name": {
                                 "value": "147",
-                                "synonyms": ["one hundred forty seven", "one hundred and forty seven", "one four seven"]
+                                "synonyms": [
+                                    "one hundred forty seven",
+                                    "one hundred and forty seven",
+                                    "one four seven",
+                                    "one forty sevent"
+                                ]
                             }
                         },
                         {
                             "id": "148",
                             "name": {
                                 "value": "148",
-                                "synonyms": ["one hundred forty eight", "one hundred and forty eight", "one four eight"]
+                                "synonyms": [
+                                    "one hundred forty eight",
+                                    "one hundred and forty eight",
+                                    "one four eight",
+                                    "one forty eight"
+                                ]
                             }
                         },
                         {
                             "id": "151",
                             "name": {
                                 "value": "151",
-                                "synonyms": ["one hundred fifty one", "one hundred and fifty one", "one five one"]
+                                "synonyms": [
+                                    "one hundred fifty one",
+                                    "one hundred and fifty one",
+                                    "one five one",
+                                    "one fifty one"
+                                ]
                             }
                         },
                         {
                             "id": "152",
                             "name": {
                                 "value": "152",
-                                "synonyms": ["one hundred fifty two", "one hundred and fifty two", "one five two"]
+                                "synonyms": [
+                                    "one hundred fifty two",
+                                    "one hundred and fifty two",
+                                    "one five two",
+                                    "one fifty two"
+                                ]
                             }
                         },
                         {
                             "id": "155",
                             "name": {
                                 "value": "155",
-                                "synonyms": ["one hundred fifty five", "one hundred and fifty five", "one five five"]
+                                "synonyms": [
+                                    "one hundred fifty five",
+                                    "one hundred and fifty five",
+                                    "one five five",
+                                    "one fifty five"
+                                ]
                             }
                         },
                         {
                             "id": "156",
                             "name": {
                                 "value": "156",
-                                "synonyms": ["one hundred fifty six", "one hundred and fifty six", "one five six"]
+                                "synonyms": [
+                                    "one hundred fifty six",
+                                    "one hundred and fifty six",
+                                    "one five six",
+                                    "one fifty six"
+                                ]
                             }
                         },
                         {
                             "id": "157",
                             "name": {
                                 "value": "157",
-                                "synonyms": ["one hundred fifty seven", "one hundred and fifty seven", "one five seven"]
+                                "synonyms": [
+                                    "one hundred fifty seven",
+                                    "one hundred and fifty seven",
+                                    "one five seven",
+                                    "one fifty seven"
+                                ]
                             }
                         },
                         {
                             "id": "165",
                             "name": {
                                 "value": "165",
-                                "synonyms": ["one hundred sixty five", "one hundred and sixty five", "one six five"]
+                                "synonyms": [
+                                    "one hundred sixty five",
+                                    "one hundred and sixty five",
+                                    "one six five",
+                                    "one sixty five"
+                                ]
                             }
                         },
                         {
                             "id": "169",
                             "name": {
                                 "value": "169",
-                                "synonyms": ["one hundred sixty nine", "one hundred and sixty nine", "one six nine"]
+                                "synonyms": [
+                                    "one hundred sixty nine",
+                                    "one hundred and sixty nine",
+                                    "one six nine",
+                                    "one sixty nine"
+                                ]
                             }
                         },
                         {
                             "id": "171",
                             "name": {
                                 "value": "171",
-                                "synonyms": ["one hundred seventy one", "one hundred and seventy one", "one seven one"]
+                                "synonyms": [
+                                    "one hundred seventy one",
+                                    "one hundred and seventy one",
+                                    "one seven one",
+                                    "one seventy one"
+                                ]
                             }
                         },
                         {
                             "id": "172",
                             "name": {
                                 "value": "172",
-                                "synonyms": ["one hundred seventy two", "one hundred and seventy two", "one seven two"]
+                                "synonyms": [
+                                    "one hundred seventy two",
+                                    "one hundred and seventy two",
+                                    "one seven two",
+                                    "one seventy two"
+                                ]
                             }
                         },
                         {
                             "id": "192",
                             "name": {
                                 "value": "192",
-                                "synonyms": ["one hundred ninety two", "one hundred and ninety two", "one nine two"]
+                                "synonyms": [
+                                    "one hundred ninety two",
+                                    "one hundred and ninety two",
+                                    "one nine two",
+                                    "one ninety two"
+                                ]
                             }
                         },
                         {
                             "id": "201",
                             "name": {
                                 "value": "201",
-                                "synonyms": ["two hundred one", "two hundred and one", "two zero one"]
+                                "synonyms": [
+                                    "two hundred one",
+                                    "two hundred and one",
+                                    "two zero one",
+                                    "two oh one"
+                                ]
                             }
                         },
                         {
                             "id": "206",
                             "name": {
                                 "value": "206",
-                                "synonyms": ["two hundred six", "two hundred and six", "two zero six"]
+                                "synonyms": [
+                                    "two hundred six",
+                                    "two hundred and six",
+                                    "two zero six",
+                                    "two oh six"
+                                ]
                             }
                         }
                     ]
