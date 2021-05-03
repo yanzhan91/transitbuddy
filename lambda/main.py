@@ -17,11 +17,11 @@ logger.setLevel(logging.INFO)
 
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
-    return handler_input.generate_template_response("launch_response", {'test': 'test'}, file_ext='jinja')
+    return handler_input.generate_template_response("launch_response", {}, file_ext='jinja')
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
 def help_request_handler(handler_input):
-    return handler_input.generate_template_response("help_response", None, file_ext='jinja')
+    return handler_input.generate_template_response("help_response", {}, file_ext='jinja')
 
 @sb.request_handler(
     can_handle_func=lambda handler_input:
@@ -36,8 +36,7 @@ def cancel_request_handler(handler_input):
 def exception_handler(handler_input, exception):
     logger.error(exception, exc_info=True)
 
-    speech = "Help!!"
-    # speech = "Sorry, there was some problem. Please try again!!"
+    speech = "Sorry, there was some problem. Please try again!!"
     handler_input.response_builder.speak(speech).ask(speech)
 
     return handler_input.response_builder.response
@@ -139,8 +138,8 @@ def check_bus(handler_input, bus_id, stop_id):
         })
     minute_strings = []
     for minute in minutes:
-        minute_strings.append('%s minutes away <break time="200ms"/>' % minute)
-    minute_string = ' and '.join(minute_strings)
+        minute_strings.append('%s minutes away ' % minute)
+    minute_string = ' <break time=\\"200ms\\"/> and '.join(minute_strings)
 
     return respond(handler_input, "bus_time_response", {
         'bus_id': bus_id,
