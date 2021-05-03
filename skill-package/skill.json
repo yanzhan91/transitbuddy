@@ -1,0 +1,33 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Ask Alexa when to begin your next commute",
+          "examplePhrases": [
+            "Alexa, ask TransitBuddy to check bus 151 at 1108",
+            "Alexa, ask TransitBuddy to add my bus",
+            "Alexa, ask TransitBuddy to get my bus"
+          ],
+          "name": "TransitBuddy",
+          "description": "TransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check bus {bus number} from {stop number}\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your default bus number and stop number to multiple presets. For example,\n\nAlexa... ask TransitBuddy to add my bus\n\nYou can retrieve the bus information with this command:\n\nAlexa... ask TransitBuddy to get my bus\nAlexa... ask TransitBuddy to get my bus for preset {preset number}\n\nCredits:\nIcon made by Freepik from www.flaticon.com"
+        }
+      },
+      "isAvailableWorldwide": false,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "PUBLIC_TRANSPORTATION",
+      "distributionCountries": [
+        "US"
+      ],
+      "distributionMode": "PUBLIC"
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:484461028173:function:ask-TransitBuddy-default-skillS-AlexaSkillFunction-TPHNA1SH5L3V"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "outputSpeech": {
+        "type": "SSML",
+        "ssml": "<speak>Bus number {{ bus_id }} at stop <say-as interpret-as=\"digits\">{{ stop_id }}</say-as><break time=\"100ms\"/> is saved to preset {{ preset_id }}.</speak>"
+    },
+    "card": {
+        "type": "Simple",
+        "title": "TransitBuddy Set Bus Successful",
+        "content": "Bus number {{ bus_id }} at stop {{ stop_id }} is saved to preset {{ preset_id }}"
+    },
+    "shouldEndSession": "True"
+}
