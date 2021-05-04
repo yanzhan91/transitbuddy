@@ -17,11 +17,11 @@ logger.setLevel(logging.INFO)
 
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
-    return handler_input.generate_template_response("launch_response", {}, file_ext='jinja')
+    return respond(handler_input, 'launch_response')
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
 def help_request_handler(handler_input):
-    return handler_input.generate_template_response("help_response", {}, file_ext='jinja')
+    return respond(handler_input, 'help_response')
 
 @sb.request_handler(
     can_handle_func=lambda handler_input:
@@ -43,17 +43,7 @@ def exception_handler(handler_input, exception):
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.FallbackIntent"))
 def fallback_handler(handler_input):
-    """AMAZON.FallbackIntent is only available in en-US locale.
-    This handler will not be triggered except in that locale,
-    so it is safe to deploy on any locale.
-    """
-    # type: (HandlerInput) -> Response
-    speech = (
-        "The Hello World skill can't help you with that.  "
-        "You can say hello!!")
-    reprompt = "You can say hello!!"
-    handler_input.response_builder.speak(speech).ask(reprompt)
-    return handler_input.response_builder.response
+    return respond(handler_input, 'fallback_response')
 
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
@@ -101,7 +91,7 @@ def get_slot_value(handler_input, key, default=None):
     else:
         return slot_value
 
-def respond(handler_input, response_file, data_map):
+def respond(handler_input, response_file, data_map={}):
     return handler_input.generate_template_response(response_file, data_map, file_ext='jinja')
 
 def set_bus(handler_input, user_id, bus_id, stop_id, preset_id):
