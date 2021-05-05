@@ -71,15 +71,19 @@
                     ]
                 },
                 {
-                    "name": "AnswerIntent",
+                    "name": "SetBusAnswerIntent",
                     "slots": [
+                        {
+                            "name": "bus_num",
+                            "type": "BUS_NUMBERS"
+                        },
                         {
                             "name": "num",
                             "type": "AMAZON.NUMBER"
                         }
                     ],
                     "samples": [
-                        "{num}"
+                        "{bus_num}", "{num}", "preset {num}"
                     ]
                 },
                 {

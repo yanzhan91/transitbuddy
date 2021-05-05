@@ -47,17 +47,14 @@ def fallback_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
-    # session_attr = handler_input.attributes_manager.session_attributes
-
-    # session_attr['request'] = 'check_bus'
-    bus_id = get_slot_value(handler_input, 'bus_id') # slots['bus_id'].value
-    stop_id = get_slot_value(handler_input, 'stop_id') # slots['stop_id'].value
+    bus_id = get_slot_value(handler_input, 'bus_id')
+    stop_id = get_slot_value(handler_input, 'stop_id')
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
     return check_bus(handler_input, bus_id, stop_id)
 
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
-def get_bus_handle(handler_input):
+def get_bus_handler(handler_input):
     preset_id = get_slot_value(handler_input, 'preset_id', '1')
     user_id = handler_input.request_envelope.context.system.user.user_id
 
@@ -65,14 +62,75 @@ def get_bus_handle(handler_input):
     return get_bus(handler_input, user_id, preset_id)
 
 @sb.request_handler(can_handle_func=is_intent_name("SetBusIntent"))
-def set_bus_handle(handler_input):
-    bus_id = get_slot_value(handler_input, 'bus_id')
-    stop_id = get_slot_value(handler_input, 'stop_id')
-    preset_id = get_slot_value(handler_input, 'preset_id')
+def set_bus_handler(handler_input):
+    session_attr = handler_input.attributes_manager.session_attributes
     user_id = handler_input.request_envelope.context.system.user.user_id
 
-    logger.info(f'Setting Bus {bus_id} at {stop_id} for preset {preset_id}...')
-    return set_bus(handler_input, user_id, bus_id, stop_id, preset_id)
+    bus_id = get_slot_value(handler_input, 'bus_id')
+    if bus_id:
+        session_attr['bus_id'] = bus_id;
+    else:
+        handler_input.response_builder.speak("For which bus number?") \
+            .ask("Which bus number? If you need more time, please say cancel.")
+        return handler_input.response_builder.response
+
+    stop_id = get_slot_value(handler_input, 'stop_id')
+    if stop_id:
+        session_attr['stop_id'] = stop_id;
+    else:
+        handler_input.response_builder.speak("For which stop number? If you need information, please visit the Chicago CTA website for stop numbers.") \
+            .ask("Which stop number? If you need more time, please say cancel.")
+        return handler_input.response_builder.response
+
+    preset_id = get_slot_value(handler_input, 'preset_id')
+    if preset_id:
+        session_attr['preset_id'] = preset_id;
+    else:
+        handler_input.response_builder.speak("For which preset number? For example, you can say preset 1.") \
+            .ask("Which preset number? If you need more time, please say cancel.")
+        return handler_input.response_builder.response
+
+    logger.info(f"Setting Bus {session_attr['bus_id']} at {session_attr['stop_id']} for preset {session_attr['preset_id']}...")
+    return set_bus(handler_input, user_id, session_attr['bus_id'], session_attr['stop_id'], session_attr['preset_id'])
+
+@sb.request_handler(can_handle_func=is_intent_name("SetBusAnswerIntent"))
+def set_bus_answer_handler(handler_input):
+    session_attr = handler_input.attributes_manager.session_attributes
+    user_id = handler_input.request_envelope.context.system.user.user_id
+    
+    if 'bus_id' not in session_attr:
+        answer = get_slot_value(handler_input, 'bus_num')
+        if not answer:
+            handler_input.response_builder.speak("Sorry, I didn't get that. Which bus number would you like to add?") \
+                .ask("Which bus number? If you need more time, please say cancel.")
+            return handler_input.response_builder.response
+        session_attr['bus_id'] = answer
+        handler_input.response_builder.speak("And which stop number?").ask("Which stop number? If you need more time, please say cancel.")
+        return handler_input.response_builder.response
+    if 'stop_id' not in session_attr:
+        answer = get_slot_value(handler_input, 'num')
+        if not answer:
+            answer = get_slot_value(handler_input, 'bus_num')
+        if not answer:
+            handler_input.response_builder.speak("Sorry, I didn't get that. Which stop number would you like to add?") \
+                .ask("Which stop number? If you need more time, please say cancel.")
+            return handler_input.response_builder.response
+        session_attr['stop_id'] = answer
+        handler_input.response_builder.speak("And for which preset number? For example, you can say preset 1.") \
+            .ask("Which preset number? If you need more time, please say cancel.")
+        return handler_input.response_builder.response
+    if 'preset_id' not in session_attr:
+        answer = get_slot_value(handler_input, 'num')
+        if not answer:
+            answer = get_slot_value(handler_input, 'bus_num')
+        if not answer:
+            handler_input.response_builder.speak("Sorry, I didn't get that. Which preset number would you like to add? For example, you can say preset 1.") \
+                .ask("Which preset number? If you need more time, please say cancel.")
+            return handler_input.response_builder.response
+        session_attr['preset_id'] = answer
+
+    logger.info(f"Setting Bus {session_attr['bus_id']} at {session_attr['stop_id']} for preset {session_attr['preset_id']}...")
+    return set_bus(handler_input, user_id, session_attr['bus_id'], session_attr['stop_id'], session_attr['preset_id'])
 
 def get_slot_value(handler_input, key, default=None):
     slots = handler_input.request_envelope.request.intent.slots
