@@ -1,6 +1,5 @@
 import boto3
 
-
 def set_bus(user_id, bus_id, stop_id, preset):
     update_exp = 'SET #p = :b'
     user_table = boto3.resource('dynamodb').Table('TransitBuddy_Users')
