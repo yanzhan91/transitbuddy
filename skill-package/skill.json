@@ -5,12 +5,12 @@
         "en-US": {
           "summary": "Ask Alexa when to begin your next commute",
           "examplePhrases": [
-            "Alexa, ask TransitBuddy to check bus 151 at 1108",
-            "Alexa, ask TransitBuddy to set bus 151 at 1108",
+            "Alexa, ask TransitBuddy to check bus 151 at one one zero eight",
+            "Alexa, ask TransitBuddy to set bus 54A at five seven one three",
             "Alexa, ask TransitBuddy to get my bus"
           ],
           "name": "TransitBuddy",
-          "description": "TransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check {bus number} from {stop number}\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your default bus number and stop number to multiple presets. For example,\n\nAlexa... ask TransitBuddy to set {bus number} at {stop number}\nAlexa... ask TransitBuddy to set {bus number} at {stop number} for {preset number}\n\nYou can retrieve the bus information with this command:\n\nAlexa... ask TransitBuddy to get my bus\nAlexa... ask TransitBuddy to get my bus for preset {preset number}\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
+          "description": "TransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check {bus number} from {stop number}\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your default bus number and stop number to multiple presets. For example,\n\nAlexa... ask TransitBuddy to set {bus number} at {stop number}\nAlexa... ask TransitBuddy to set {bus number} at {stop number} for {preset number}\n\nYou can retrieve the bus information with this command:\n\nAlexa... ask TransitBuddy to get my bus\nAlexa... ask TransitBuddy to get my bus for preset {preset number}\n\nFor questions and suggestions for this skill, please email me at yzdevelopment@yahoo.com.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
           "keywords": [
             "Chicago",
             "cta",
@@ -34,6 +34,13 @@
         "US"
       ],
       "distributionMode": "PUBLIC"
+    },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
     },
     "apis": {
       "custom": {
