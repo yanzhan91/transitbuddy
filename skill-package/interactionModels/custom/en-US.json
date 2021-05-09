@@ -11,14 +11,19 @@
                             "type": "BUS_NUMBERS"
                         },
                         {
+                            "name": "train_id",
+                            "type": "TRAIN_COLORS"
+                        },
+                        {
                             "name": "stop_id",
                             "type": "AMAZON.NUMBER"
                         }
                     ],
                     "samples": [
-                        "check {bus_id} at {stop_id}",
                         "check bus {bus_id} at {stop_id}",
-                        "check bus {bus_id} at stop {stop_id}"
+                        "check bus {bus_id} at stop {stop_id}",
+                        "check train {train_id} at {stop_id}",
+                        "check train {train_id} at stop {stop_id}"
                     ]
                 },
                 {
@@ -40,16 +45,20 @@
                     "samples": [
                         "add bus {bus_id} at stop {stop_id}",
                         "add bus {bus_id} at {stop_id}",
-                        "add {bus_id} at {stop_id}",
                         "set bus {bus_id} at stop {stop_id}",
                         "set bus {bus_id} at {stop_id}",
-                        "set {bus_id} at {stop_id}",
                         "add bus {bus_id} at stop {stop_id} for preset {preset_id}",
                         "add bus {bus_id} at {stop_id} for preset {preset_id}",
-                        "add {bus_id} at {stop_id} for preset {preset_id}",
                         "set bus {bus_id} at stop {stop_id} for preset {preset_id}",
                         "set bus {bus_id} at {stop_id} for preset {preset_id}",
-                        "set {bus_id} at {stop_id} for preset {preset_id}"
+                        "add bus {bus_id} at stop {stop_id}",
+                        "add train {train_id} at {stop_id}",
+                        "set train {train_id} at stop {stop_id}",
+                        "set train {train_id} at {stop_id}",
+                        "add train {train_id} at stop {stop_id} for preset {preset_id}",
+                        "add train {train_id} at {stop_id} for preset {preset_id}",
+                        "set train {train_id} at stop {stop_id} for preset {preset_id}",
+                        "set train {train_id} at {stop_id} for preset {preset_id}"
                     ]
                 },
                 {
@@ -68,8 +77,19 @@
                         "get my bus at preset {preset_id}",
                         "get bus for preset {preset_id}",
                         "get bus at preset {preset_id}",
+                        "where's my bus",
                         "where's my bus for preset {preset_id}",
-                        "where's my bus at preset {preset_id}"
+                        "where's my bus at preset {preset_id}",
+                        "get my train",
+                        "get my train at preset {preset_id}",
+                        "get my train for preset {preset_id}",
+                        "get my train for preset {preset_id}",
+                        "get my train at preset {preset_id}",
+                        "get train for preset {preset_id}",
+                        "get train at preset {preset_id}",
+                        "where's my train",
+                        "where's my train for preset {preset_id}",
+                        "where's my train at preset {preset_id}"
                     ]
                 },
                 {
@@ -1388,6 +1408,67 @@
                                     "two zero six",
                                     "two oh six"
                                 ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "TRAIN_COLORS",
+                    "values": [
+                        {
+                            "id": "red",
+                            "name": {
+                                "value": "Red",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "blue",
+                            "name": {
+                                "value": "Blue",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "brown",
+                            "name": {
+                                "value": "Brn",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "green",
+                            "name": {
+                                "value": "G",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "orange",
+                            "name": {
+                                "value": "Org",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "purple",
+                            "name": {
+                                "value": "P",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "pink",
+                            "name": {
+                                "value": "Pink",
+                                "synonyms": []
+                            }
+                        },
+                        {
+                            "id": "yellow",
+                            "name": {
+                                "value": "Y",
+                                "synonyms": []
                             }
                         }
                     ]
