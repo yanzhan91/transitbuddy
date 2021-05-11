@@ -47,8 +47,17 @@ def fallback_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
-    bus_id = get_slot_value(handler_input, 'bus_id')
-    stop_id = get_slot_value(handler_input, 'stop_id')
+    try:
+        bus_id = get_slot_value(handler_input, 'bus_id')
+        stop_id = get_slot_value(handler_input, 'stop_id')
+    except:
+        pass
+
+    if not bus_id or not stop_id:
+        logging.error(handler_input.request_envelope)
+        return respond(handler_input, 'bad_request_response', {
+            'type': 'bus number' if not bus_id else 'stop number'
+        })
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
     return check_bus(handler_input, bus_id, stop_id)
@@ -65,9 +74,24 @@ def get_bus_handler(handler_input):
 def set_bus_handler(handler_input):
     user_id = handler_input.request_envelope.context.system.user.user_id
 
-    bus_id = get_slot_value(handler_input, 'bus_id')
-    stop_id = get_slot_value(handler_input, 'stop_id')
-    preset_id = get_slot_value(handler_input, 'preset_id', '1')
+    try:
+        bus_id = get_slot_value(handler_input, 'bus_id')
+        stop_id = get_slot_value(handler_input, 'stop_id')
+        preset_id = get_slot_value(handler_input, 'preset_id', '1')
+    except:
+        pass
+
+    if not bus_id or not stop_id or not preset_id:
+        logging.error(handler_input.request_envelope)
+        if not bus_id:
+            bad_request_type = 'bus number'
+        elif not stop_id:
+            bad_request_type = 'stop number'
+        else:
+            bad_request_type = 'preset number'
+        return respond(handler_input, 'bad_request_response', {
+            'type': bad_request_type
+        })
 
     logger.info(f"Setting Bus {bus_id} at {stop_id} for preset {preset_id}...")
     return set_bus(handler_input, user_id, bus_id, stop_id, preset_id)
