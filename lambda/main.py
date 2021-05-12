@@ -47,6 +47,9 @@ def fallback_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
+    bus_id = None
+    stop_id = None
+
     try:
         bus_id = get_slot_value(handler_input, 'bus_id')
         stop_id = get_slot_value(handler_input, 'stop_id')
@@ -73,6 +76,9 @@ def get_bus_handler(handler_input):
 @sb.request_handler(can_handle_func=is_intent_name("SetBusIntent"))
 def set_bus_handler(handler_input):
     user_id = handler_input.request_envelope.context.system.user.user_id
+    bus_id = None
+    stop_id = None
+    preset_id = None
 
     try:
         bus_id = get_slot_value(handler_input, 'bus_id')
@@ -113,7 +119,7 @@ def get_slot_value(handler_input, key, default=None):
     else:
         return slot_value
 
-def respond(handler_input, response_file, data_map={}):
+def respond(handler_input, response_file, data_map={'test': 'test'}):
     return handler_input.generate_template_response(response_file, data_map, file_ext='jinja')
 
 def set_bus(handler_input, user_id, bus_id, stop_id, preset_id):
@@ -135,9 +141,9 @@ def get_bus(handler_input, user_id, preset_id):
         return respond(handler_input, "no_preset_response", {
             'preset_id': preset_id
         })
-    return check_bus(handler_input, bus_id, stop_id)
+    return check_bus(handler_input, bus_id, stop_id, preset_id)
 
-def check_bus(handler_input, bus_id, stop_id):
+def check_bus(handler_input, bus_id, stop_id, preset_id = None):
     minutes, stpnm = CheckBusIntent.check_bus(bus_id, stop_id)
     if stpnm:
         stpnm = stpnm.replace('&', 'and')
@@ -146,18 +152,20 @@ def check_bus(handler_input, bus_id, stop_id):
     if len(minutes) == 0:
         return respond(handler_input, 'no_bus_response', {
             'bus_id': bus_id,
-            'stop_id': stop_id    
+            'stop_id': stop_id,
+            'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else ''
         })
     minute_strings = []
     for minute in minutes:
         minute_strings.append('%s minutes away ' % minute)
-    minute_string = ' <break time=\\"200ms\\"/> and '.join(minute_strings)
 
     return respond(handler_input, "bus_time_response", {
         'bus_id': bus_id,
         'stop_id': stop_id,
-        'minutes': minute_string,
-        'stop_name': stpnm
+        'minutes': ' <break time=\\"200ms\\"/> and '.join(minute_strings),
+        'card_minutes': ' and '.join(minute_strings),
+        'stop_name': stpnm,
+        'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else ''
     })
 
 sb.add_loader(FileSystemTemplateLoader(dir_path="templates", encoding='utf-8'))

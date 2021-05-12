@@ -1,12 +1,12 @@
 {
     "outputSpeech": {
         "type": "SSML",
-        "ssml": "<speak>The next {{ bus_id }} bus at stop <say-as interpret-as=\"digits\">{{ stop_id }}</say-as> <break time=\"100ms\"/> {{ stop_name }} <break time=\"300ms\"/> is {{ minutes }}.</speak>"
+        "ssml": "<speak>{{ with_preset }} The next bus {{ bus_id }} at stop <say-as interpret-as=\"digits\">{{ stop_id }}</say-as> <break time=\"100ms\"/> {{ stop_name }} <break time=\"300ms\"/> is {{ minutes }}.</speak>"
     },
     "card": {
         "type": "Simple",
         "title": "TransitBuddy Check Bus Status",
-        "content": "The next {{ bus_id }} bus at stop {{ stop_id }}, {{ stop_name }}, is {{ minutes }}."
+        "content": "The next bus {{ bus_id }} at stop {{ stop_id }}, {{ stop_name }}, is {{ card_minutes }}."
     },
     "shouldEndSession": "True"
 }
