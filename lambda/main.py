@@ -4,7 +4,6 @@ from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import is_request_type, is_intent_name
 
 import CheckBusIntent
-import SetBusIntent
 import GetBusIntent
 
 from ask_sdk_core.view_resolvers import FileSystemTemplateLoader
@@ -68,39 +67,18 @@ def check_bus_handler(handler_input):
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handler(handler_input):
     preset_id = get_slot_value(handler_input, 'preset_id', '1')
-    user_id = handler_input.request_envelope.context.system.user.user_id
-
     logger.info(f'Getting Bus at preset {preset_id}...')
-    return get_bus(handler_input, user_id, preset_id)
+
+    user = handler_input.request_envelope.context.system.user
+    if 'access_token' in user:
+        token = user.access_token;
+        return get_bus(handler_input, token, preset_id)
+    else:
+        return respond(handler_input, 'account_linking_response')
 
 @sb.request_handler(can_handle_func=is_intent_name("SetBusIntent"))
 def set_bus_handler(handler_input):
-    user_id = handler_input.request_envelope.context.system.user.user_id
-    bus_id = None
-    stop_id = None
-    preset_id = None
-
-    try:
-        bus_id = get_slot_value(handler_input, 'bus_id')
-        stop_id = get_slot_value(handler_input, 'stop_id')
-        preset_id = get_slot_value(handler_input, 'preset_id', '1')
-    except:
-        pass
-
-    if not bus_id or not stop_id or not preset_id:
-        logging.error(handler_input.request_envelope)
-        if not bus_id:
-            bad_request_type = 'bus number'
-        elif not stop_id:
-            bad_request_type = 'stop number'
-        else:
-            bad_request_type = 'preset number'
-        return respond(handler_input, 'bad_request_response', {
-            'type': bad_request_type
-        })
-
-    logger.info(f"Setting Bus {bus_id} at {stop_id} for preset {preset_id}...")
-    return set_bus(handler_input, user_id, bus_id, stop_id, preset_id)
+    return respond(handler_input, 'account_linking_response')
 
 def get_slot_value(handler_input, key, default=None):
     slots = handler_input.request_envelope.request.intent.slots
@@ -122,19 +100,9 @@ def get_slot_value(handler_input, key, default=None):
 def respond(handler_input, response_file, data_map={'test': 'test'}):
     return handler_input.generate_template_response(response_file, data_map, file_ext='jinja')
 
-def set_bus(handler_input, user_id, bus_id, stop_id, preset_id):
-    logger.info(f'Setting Bus {bus_id} at {stop_id} for preset {preset_id}...')
-    SetBusIntent.set_bus(user_id, bus_id, stop_id, preset_id)
-    logger.info(f'Set bus {bus_id} at {stop_id} for {preset_id} was successful')
-    return respond(handler_input, 'set_bus_response', {
-        'bus_id': bus_id,
-        'stop_id': stop_id,
-        'preset_id': preset_id
-    })
-
-def get_bus(handler_input, user_id, preset_id):
+def get_bus(handler_input, token, preset_id):
     logger.info(f'Getting Bus at preset {preset_id}...')
-    bus_id, stop_id = GetBusIntent.get_bus(user_id, preset_id)
+    bus_id, stop_id = GetBusIntent.get_bus_v2(token, preset_id)
     logger.info(f'Bus retrieved was {bus_id} at {stop_id}')
 
     if not bus_id or not stop_id:
