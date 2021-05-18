@@ -6,11 +6,10 @@
           "summary": "Ask Alexa when to begin your next commute",
           "examplePhrases": [
             "Alexa, ask TransitBuddy to check bus 151 at one one zero eight",
-            "Alexa, ask TransitBuddy to set bus 54A at five seven one three",
             "Alexa, ask TransitBuddy to get my bus"
           ],
           "name": "TransitBuddy",
-          "description": "TransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check bus 151 from stop 1108\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your default bus number and stop number to multiple presets. For example,\n\nAlexa... ask TransitBuddy to set bus 151 at 1108\nAlexa... ask TransitBuddy to set bus 151 at 1108 for preset 1\n\nYou can retrieve the bus information with this command:\n\nAlexa... ask TransitBuddy to get my bus\nAlexa... ask TransitBuddy to get my bus for preset 1\n\nFor questions and suggestions for this skill, please email me at yzdevelopment@yahoo.com.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
+          "description": "TransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check bus 151 from stop 1108\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your bus number and stop number to multiple presets. We updated this skill to provide you a beautiful user interface for adding your presets. Please visit mytransitbuddy.com to create an account and link to this TransitBuddy Alexa skill.\n\nYou can quickly retrieve the bus information with this command:\n\n\"Alexa... ask TransitBuddy to get my bus\"\n\"Alexa... ask TransitBuddy to get my bus for preset 2\"\n\nFor questions and suggestions for this skill, please email uTransitBuddy helps you get the estimated arrival time of your Chicago CTA buses. Simply ask this question:\n\nAlexa... ask TransitBuddy to check bus 151 from stop 1108\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your bus number and stop number to multiple presets. We updated this skill to provide you a beautiful user interface for adding your presets. Please visit mytransitbuddy.com to create an account and link to this TransitBuddy Alexa skill.\n\nYou can quickly retrieve the bus information with this command:\n\n\"Alexa... ask TransitBuddy to get my bus\"\n\"Alexa... ask TransitBuddy to get my bus for preset 2\"\n\nFor questions and suggestions for this skill, please email us at yzdevelopment@yahoo.com.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
           "keywords": [
             "Chicago",
             "cta",
@@ -22,7 +21,7 @@
             "commute",
             "transport"
           ],
-          "updatesDescription": "Add support for buses with letters",
+          "updatesDescription": "A brand new interface for adding your bus presets. Visit mytransitbuddy.com to create an account and link to your TransitBuddy Alexa skill.",
           "smallIconUri": "file://assets/en-US_smallIcon.png",
           "largeIconUri": "file://assets/en-US_largeIcon.png"
         }
