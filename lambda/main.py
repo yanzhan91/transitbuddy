@@ -70,7 +70,7 @@ def get_bus_handler(handler_input):
     logger.info(f'Getting Bus at preset {preset_id}...')
 
     user = handler_input.request_envelope.context.system.user
-    if 'access_token' in user:
+    if user.access_token:
         token = user.access_token;
         return get_bus(handler_input, token, preset_id)
     else:
@@ -102,7 +102,7 @@ def respond(handler_input, response_file, data_map={'test': 'test'}):
 
 def get_bus(handler_input, token, preset_id):
     logger.info(f'Getting Bus at preset {preset_id}...')
-    bus_id, stop_id = GetBusIntent.get_bus_v2(token, preset_id)
+    bus_id, stop_id = GetBusIntent.get_bus(token, preset_id)
     logger.info(f'Bus retrieved was {bus_id} at {stop_id}')
 
     if not bus_id or not stop_id:

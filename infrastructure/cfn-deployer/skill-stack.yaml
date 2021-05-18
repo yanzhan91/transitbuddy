@@ -49,7 +49,15 @@ Resources:
                     - "dynamodb:Scan"
                     - "dynamodb:UpdateItem"
                     - "dynamodb:UpdateTable"
-                  Resource: arn:aws:dynamodb:*:*:table/TransitBuddy*
+                  Resource: arn:aws:dynamodb:*:*:table/*ransit*uddy*
+          - PolicyName: alexaSkillSecretManagerPolicy
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - "secretsmanager:GetSecretValue"
+                  Resource: arn:aws:secretsmanager:*:*:secret:transitbuddy/*
   AlexaSkillFunction:
     Type: AWS::Lambda::Function
     Properties:

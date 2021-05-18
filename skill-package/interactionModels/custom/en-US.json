@@ -40,16 +40,8 @@
                     "samples": [
                         "add bus {bus_id} at stop {stop_id}",
                         "add bus {bus_id} at {stop_id}",
-                        "add {bus_id} at {stop_id}",
                         "set bus {bus_id} at stop {stop_id}",
-                        "set bus {bus_id} at {stop_id}",
-                        "set {bus_id} at {stop_id}",
-                        "add bus {bus_id} at stop {stop_id} for preset {preset_id}",
-                        "add bus {bus_id} at {stop_id} for preset {preset_id}",
-                        "add {bus_id} at {stop_id} for preset {preset_id}",
-                        "set bus {bus_id} at stop {stop_id} for preset {preset_id}",
-                        "set bus {bus_id} at {stop_id} for preset {preset_id}",
-                        "set {bus_id} at {stop_id} for preset {preset_id}"
+                        "set bus {bus_id} at {stop_id}"
                     ]
                 },
                 {
@@ -61,6 +53,7 @@
                         }
                     ],
                     "samples": [
+                        "get preset {preset_id}",
                         "get my bus",
                         "get my bus at preset {preset_id}",
                         "get my bus for preset {preset_id}",

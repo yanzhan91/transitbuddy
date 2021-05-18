@@ -1,25 +1,9 @@
 import boto3
-from boto3.dynamodb.conditions import Key
 
-def get_bus(user_id, preset):
-    user_table = boto3.resource('dynamodb').Table('TransitBuddy_Users')
-    response = user_table.query(
-        KeyConditionExpression=Key('user_id').eq(user_id),
-        Limit=1
-    )
-
-    try:
-        user = response['Items'][0]
-        user = user[f'preset {preset}']
-    except (KeyError, IndexError):
-        return None, None
-
-    return user['bus_id'], user['stop_id']
-
-def get_bus_v2(token, preset=1):
+def get_bus(token, preset=1):
     username = _get_username(token)
 
-    client = boto3.client('dynamodb')
+    client = boto3.client('dynamodb', region_name='us-east-2')
     response = client.get_item(
         Key={
             "userId": {
@@ -40,7 +24,7 @@ def get_bus_v2(token, preset=1):
 
 def _get_username(token):
     client = boto3.client('cognito-idp', region_name='us-east-2')
-    return client.get_user(AccessToken=token)['username']
+    return client.get_user(AccessToken=token)['Username']
 
 if __name__ == '__main__':
-    print(get_bus('123', '1'))
+    print(get_bus('', '1'))
