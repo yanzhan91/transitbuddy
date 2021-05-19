@@ -56,13 +56,13 @@ def check_bus_handler(handler_input):
         pass
 
     if not bus_id or not stop_id:
-        logging.error(handler_input.request_envelope)
+        logger.error(handler_input.request_envelope)
         return respond(handler_input, 'bad_request_response', {
             'type': 'bus number' if not bus_id else 'stop number'
         })
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
-    return check_bus(handler_input, bus_id, stop_id)
+    return check_bus(handler_input, bus_id, stop_id, notify_account_linking = True)
 
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handler(handler_input):
@@ -111,12 +111,12 @@ def get_bus(handler_input, token, preset_id):
         })
     return check_bus(handler_input, bus_id, stop_id, preset_id)
 
-def check_bus(handler_input, bus_id, stop_id, preset_id = None):
+def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_linking = False):
     minutes, stpnm = CheckBusIntent.check_bus(bus_id, stop_id)
     if stpnm:
         stpnm = stpnm.replace('&', 'and')
 
-    logging.info('Minutes received: %s' % minutes)
+    logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:
         return respond(handler_input, 'no_bus_response', {
             'bus_id': bus_id,
@@ -125,7 +125,7 @@ def check_bus(handler_input, bus_id, stop_id, preset_id = None):
         })
     minute_strings = []
     for minute in minutes:
-        minute_strings.append('%s minutes away ' % minute)
+        minute_strings.append('%s minutes away' % minute)
 
     return respond(handler_input, "bus_time_response", {
         'bus_id': bus_id,
@@ -133,7 +133,9 @@ def check_bus(handler_input, bus_id, stop_id, preset_id = None):
         'minutes': ' <break time=\\"200ms\\"/> and '.join(minute_strings),
         'card_minutes': ' and '.join(minute_strings),
         'stop_name': stpnm,
-        'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else ''
+        'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else '',
+        'account_linking': 'For more simplicity, you can create presets to more easily get your bus times. '
+            'Check the alexa app for details in the Transit Buddy skills page.' if notify_account_linking else ''
     })
 
 sb.add_loader(FileSystemTemplateLoader(dir_path="templates", encoding='utf-8'))

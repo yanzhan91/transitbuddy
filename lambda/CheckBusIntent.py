@@ -46,4 +46,4 @@ def check_bus(bus_id, stop_id):
     return minutes, predictions[0]['stpnm']
 
 if __name__ == '__main__':
-    print(check_bus('151', '1108'))
+    print(check_bus('X98', '17037'))
