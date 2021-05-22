@@ -31,10 +31,6 @@
                         {
                             "name": "stop_id",
                             "type": "AMAZON.NUMBER"
-                        },
-                        {
-                            "name": "preset_id",
-                            "type": "AMAZON.NUMBER"
                         }
                     ],
                     "samples": [
@@ -76,7 +72,9 @@
                     "name": "AMAZON.StopIntent",
                     "samples": [
                         "stop",
-                        "exit"
+                        "exit",
+                        "cancel",
+                        "nevermind"
                     ]
                 },
                 {

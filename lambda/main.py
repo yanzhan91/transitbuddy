@@ -1,4 +1,5 @@
 import logging
+import random
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import is_request_type, is_intent_name
@@ -20,7 +21,7 @@ def launch_request_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
 def help_request_handler(handler_input):
-    return respond(handler_input, 'help_response')
+    return respond(handler_input, 'launch_response')
 
 @sb.request_handler(
     can_handle_func=lambda handler_input:
@@ -126,6 +127,8 @@ def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_l
     minute_strings = []
     for minute in minutes:
         minute_strings.append('%s minutes away' % minute)
+
+    notify_account_linking = notify_account_linking and random.randint(1,5) == 5
 
     return respond(handler_input, "bus_time_response", {
         'bus_id': bus_id,
