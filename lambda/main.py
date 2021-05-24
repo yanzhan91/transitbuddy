@@ -2,13 +2,14 @@ import logging
 import random
 
 from ask_sdk_core.skill_builder import SkillBuilder
-from ask_sdk_core.utils import is_request_type, is_intent_name
-
-import CheckBusIntent
-import GetBusIntent
-
+from ask_sdk_core.utils import is_intent_name, is_request_type
 from ask_sdk_core.view_resolvers import FileSystemTemplateLoader
 from ask_sdk_jinja_renderer import JinjaTemplateRenderer
+
+from agencies.chicago_cta_bus import ChicagoCTABus
+from agencies.chicago_cta_train import ChicagoCTATrain
+
+import utils
 
 sb = SkillBuilder()
 
@@ -103,7 +104,7 @@ def respond(handler_input, response_file, data_map={'test': 'test'}):
 
 def get_bus(handler_input, token, preset_id):
     logger.info(f'Getting Bus at preset {preset_id}...')
-    bus_id, stop_id = GetBusIntent.get_bus(token, preset_id)
+    bus_id, stop_id = utils.get_bus(token, preset_id)
     logger.info(f'Bus retrieved was {bus_id} at {stop_id}')
 
     if not bus_id or not stop_id:
@@ -113,9 +114,7 @@ def get_bus(handler_input, token, preset_id):
     return check_bus(handler_input, bus_id, stop_id, preset_id)
 
 def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_linking = False):
-    minutes, stpnm = CheckBusIntent.check_bus(bus_id, stop_id)
-    if stpnm:
-        stpnm = stpnm.replace('&', 'and')
+    minutes, stpnm = __get_agency(bus_id).check_bus(bus_id, stop_id)
 
     logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:
@@ -141,7 +140,18 @@ def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_l
             'Check the alexa app for details in the Transit Buddy skills page.' if notify_account_linking else ''
     })
 
+def __get_agency(bus_id):
+    if bus_id in ['Red', 'Blue', 'G', 'Brn', 'P', 'Y', 'Pink', 'Org']:
+        return ChicagoCTATrain()
+    else:
+        return ChicagoCTABus()
+
 sb.add_loader(FileSystemTemplateLoader(dir_path="templates", encoding='utf-8'))
 sb.add_renderer(JinjaTemplateRenderer())
 
 handler = sb.lambda_handler()
+
+if __name__ == '__main__':
+    # print(utils.get_bus('abcde'))
+    print(__get_agency("Blue").check_bus("Blue", "30375"))
+    

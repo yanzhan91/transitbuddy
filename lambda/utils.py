@@ -1,7 +1,8 @@
 import boto3
 
 def get_bus(token, preset=1):
-    username = _get_username(token)
+    username = __get_username(token)
+    # username = 'test'
 
     client = boto3.client('dynamodb', region_name='us-east-2')
     response = client.get_item(
@@ -22,9 +23,6 @@ def get_bus(token, preset=1):
     except (KeyError, IndexError):
         return None, None
 
-def _get_username(token):
+def __get_username(token):
     client = boto3.client('cognito-idp', region_name='us-east-2')
     return client.get_user(AccessToken=token)['Username']
-
-if __name__ == '__main__':
-    print(get_bus('', '1'))

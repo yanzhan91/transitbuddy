@@ -18,26 +18,9 @@
                     "samples": [
                         "check {bus_id} at {stop_id}",
                         "check bus {bus_id} at {stop_id}",
-                        "check bus {bus_id} at stop {stop_id}"
-                    ]
-                },
-                {
-                    "name": "SetBusIntent",
-                    "slots": [
-                        {
-                            "name": "bus_id",
-                            "type": "BUS_NUMBERS"
-                        },
-                        {
-                            "name": "stop_id",
-                            "type": "AMAZON.NUMBER"
-                        }
-                    ],
-                    "samples": [
-                        "add bus {bus_id} at stop {stop_id}",
-                        "add bus {bus_id} at {stop_id}",
-                        "set bus {bus_id} at stop {stop_id}",
-                        "set bus {bus_id} at {stop_id}"
+                        "check bus {bus_id} at stop {stop_id}",
+                        "check train {bus_id} at {stop_id}",
+                        "check train {bus_id} at stop {stop_id}"
                     ]
                 },
                 {
@@ -55,10 +38,19 @@
                         "get my bus for preset {preset_id}",
                         "get my bus for preset {preset_id}",
                         "get my bus at preset {preset_id}",
+                        "get my train",
+                        "get my train at preset {preset_id}",
+                        "get my train for preset {preset_id}",
+                        "get my train for preset {preset_id}",
+                        "get my train at preset {preset_id}",
                         "get bus for preset {preset_id}",
                         "get bus at preset {preset_id}",
+                        "where's my bus",
+                        "where's my train",
                         "where's my bus for preset {preset_id}",
-                        "where's my bus at preset {preset_id}"
+                        "where's my bus at preset {preset_id}",
+                        "where's my train for preset {preset_id}",
+                        "where's my train at preset {preset_id}"
                     ]
                 },
                 {
@@ -86,6 +78,14 @@
                 {
                     "name": "BUS_NUMBERS",
                     "values": [
+                        { "id": "red", "name": {"value": "Red", "synonyms": []} },
+                        { "id": "blue", "name": {"value": "Blue", "synonyms": []} },
+                        { "id": "green", "name": {"value": "G", "synonyms": []} },
+                        { "id": "brown", "name": {"value": "Brn", "synonyms": []} },
+                        { "id": "purple", "name": {"value": "P", "synonyms": []} },
+                        { "id": "yellow", "name": {"value": "Y", "synonyms": []} },
+                        { "id": "pink", "name": {"value": "Pink", "synonyms": []} },
+                        { "id": "orange", "name": {"value": "Org", "synonyms": []} },
                         {
                             "id": "1",
                             "name": {
