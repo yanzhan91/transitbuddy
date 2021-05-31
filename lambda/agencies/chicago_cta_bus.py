@@ -18,12 +18,12 @@ class ChicagoCTABus(Agency):
         bustime_response = response.json()['bustime-response']
 
         if 'error' in bustime_response:
-            return minutes, None
+            return minutes, 'bus', bus_id, stop_id, ''
 
         predictions = bustime_response['prd']
 
         if len(predictions) == 0:
-            return minutes, None
+            return minutes, 'bus', bus_id, stop_id, ''
 
         for prdt in predictions:
             minutes.append('0' if prdt['prdctdn'] == 'DUE' else prdt['prdctdn'])
@@ -33,7 +33,7 @@ class ChicagoCTABus(Agency):
         if station:
             station = station.replace('&', 'and')
 
-        return minutes, station
+        return minutes, 'bus', bus_id, stop_id, station
 
 if __name__ == '__main__':
     agency = ChicagoCTABus()

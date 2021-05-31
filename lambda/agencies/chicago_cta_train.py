@@ -9,6 +9,17 @@ if __name__ == '__main__':
 else:
     from agencies.agency import Agency
 
+train_color_map = {
+    "Red" : "red",
+    "Blue" : "blue",
+    "G" : "green",
+    "Brn" : "brown",
+    "P" : "purple",
+    "Y" : "yellow",
+    "Pink" : "pink",
+    "Org" : "orange",
+}
+
 class ChicagoCTATrain(Agency):
 
     def check_bus(self, bus_id, stop_id):
@@ -23,12 +34,12 @@ class ChicagoCTATrain(Agency):
 
         if ('errCd' in traintime_response and traintime_response['errCd'] != '0') \
             or 'eta' not in traintime_response:
-            return minutes, None
+            return minutes, 'train', train_color_map[bus_id], stop_id, None
 
         predictions = traintime_response['eta']
 
         if len(predictions) == 0:
-            return minutes, None
+            return minutes, 'train', train_color_map[bus_id], stop_id, None
 
         for prdt in predictions:
             # print(f"{prdt['arrT']} - {prdt['staNm']} - {prdt['rt']} - {prdt['destNm']}")
@@ -40,7 +51,7 @@ class ChicagoCTATrain(Agency):
 
         station = re.sub('[/-]', ' and ', predictions[0]['staNm'])
         
-        return minutes, station
+        return minutes, 'train', train_color_map[bus_id], '', station
 
     def __get_predictions(self, prdt):
         predicted_time = datetime.strptime(prdt['arrT'] + ' -0500', '%Y-%m-%dT%H:%M:%S %z')

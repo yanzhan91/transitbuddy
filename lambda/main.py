@@ -60,7 +60,7 @@ def check_bus_handler(handler_input):
     if not bus_id or not stop_id:
         logger.error(handler_input.request_envelope)
         return respond(handler_input, 'bad_request_response', {
-            'type': 'bus number' if not bus_id else 'stop number'
+            'type': 'bus or train number' if not bus_id else 'stop number'
         })
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
@@ -114,13 +114,13 @@ def get_bus(handler_input, token, preset_id):
     return check_bus(handler_input, bus_id, stop_id, preset_id)
 
 def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_linking = False):
-    minutes, stpnm = __get_agency(bus_id).check_bus(bus_id, stop_id)
+    minutes, type, bus, stop, station = __get_agency(bus_id).check_bus(bus_id, stop_id)
 
     logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:
         return respond(handler_input, 'no_bus_response', {
-            'bus_id': bus_id,
-            'stop_id': stop_id,
+            'bus_id': bus,
+            'stop_id': stop,
             'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else ''
         })
     minute_strings = []
@@ -130,11 +130,12 @@ def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_l
     notify_account_linking = notify_account_linking and random.randint(1,5) == 5
 
     return respond(handler_input, "bus_time_response", {
-        'bus_id': bus_id,
-        'stop_id': stop_id,
+        'type': type,
+        'bus_id': bus,
+        'stop_id': stop,
         'minutes': ' <break time=\\"200ms\\"/> and '.join(minute_strings),
         'card_minutes': ' and '.join(minute_strings),
-        'stop_name': stpnm,
+        'stop_name': station,
         'with_preset': f'At preset {preset_id}, <break time=\\"200ms\\"/> ' if preset_id else '',
         'account_linking': 'For more simplicity, you can create presets to more easily get your bus times. '
             'Check the alexa app for details in the Transit Buddy skills page.' if notify_account_linking else ''
