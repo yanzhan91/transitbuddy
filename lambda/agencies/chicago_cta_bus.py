@@ -8,7 +8,7 @@ else:
 
 class ChicagoCTABus(Agency):
 
-    def check_bus(self, bus_id, stop_id):
+    def check_bus(self, bus_id, _, stop_id):
         key = json.loads(self._get_secret())['transitbuddy_cta_bus_api_key']
         response = requests.get('http://www.ctabustracker.com/bustime/api/v2/getpredictions?'
             f'key={key}&rt={bus_id}&stpid={stop_id}&top=2&format=json')

@@ -22,7 +22,7 @@ train_color_map = {
 
 class ChicagoCTATrain(Agency):
 
-    def check_bus(self, bus_id, stop_id):
+    def check_bus(self, bus_id, _, stop_id):
         secrets = self._get_secret()
         key = json.loads(secrets)['transitbuddy_cta_train_api_key']
         response = requests.get('http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?'

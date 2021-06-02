@@ -64,7 +64,7 @@ def check_bus_handler(handler_input):
         })
 
     logger.info(f'Checking Bus {bus_id} at {stop_id}...')
-    return check_bus(handler_input, bus_id, stop_id, notify_account_linking = True)
+    return check_bus(handler_input, bus_id, None, stop_id, notify_account_linking = True)
 
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handler(handler_input):
@@ -104,17 +104,17 @@ def respond(handler_input, response_file, data_map={'test': 'test'}):
 
 def get_bus(handler_input, token, preset_id):
     logger.info(f'Getting Bus at preset {preset_id}...')
-    bus_id, stop_id = utils.get_bus(token, preset_id)
+    bus_id, direction_id, stop_id = utils.get_bus(token, preset_id)
     logger.info(f'Bus retrieved was {bus_id} at {stop_id}')
 
     if not bus_id or not stop_id:
         return respond(handler_input, "no_preset_response", {
             'preset_id': preset_id
         })
-    return check_bus(handler_input, bus_id, stop_id, preset_id)
+    return check_bus(handler_input, bus_id, direction_id, stop_id, preset_id)
 
-def check_bus(handler_input, bus_id, stop_id, preset_id = None, notify_account_linking = False):
-    minutes, type, bus, stop, station = __get_agency(bus_id).check_bus(bus_id, stop_id)
+def check_bus(handler_input, bus_id, direction_id, stop_id, preset_id = None, notify_account_linking = False):
+    minutes, type, bus, stop, station = __get_agency(bus_id).check_bus(bus_id, direction_id, stop_id)
 
     logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:

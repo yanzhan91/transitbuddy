@@ -19,9 +19,10 @@ def get_bus(token, preset=1):
 
     try:
         item = response['Item']
-        return item['routeId']['S'], item['stopId']['S']
+        return item['routeId']['S'], \
+            item['directionId']['S'] if 'directionId' in item else None, item['stopId']['S']
     except (KeyError, IndexError):
-        return None, None
+        return None, None, None
 
 def __get_username(token):
     client = boto3.client('cognito-idp', region_name='us-east-2')
