@@ -8,6 +8,7 @@ from ask_sdk_jinja_renderer import JinjaTemplateRenderer
 
 from agencies.chicago_cta_bus import ChicagoCTABus
 from agencies.chicago_cta_train import ChicagoCTATrain
+from chicago_pace_bus import ChicagoPaceBus
 
 import utils
 
@@ -48,23 +49,7 @@ def fallback_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("CheckBusIntent"))
 def check_bus_handler(handler_input):
-    bus_id = None
-    stop_id = None
-
-    try:
-        bus_id = get_slot_value(handler_input, 'bus_id')
-        stop_id = get_slot_value(handler_input, 'stop_id')
-    except:
-        pass
-
-    if not bus_id or not stop_id:
-        logger.error(handler_input.request_envelope)
-        return respond(handler_input, 'bad_request_response', {
-            'type': 'bus or train number' if not bus_id else 'stop number'
-        })
-
-    logger.info(f'Checking Bus {bus_id} at {stop_id}...')
-    return check_bus(handler_input, bus_id, None, stop_id, notify_account_linking = True)
+    return respond(handler_input, 'account_linking_response')
 
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handler(handler_input):
@@ -104,17 +89,17 @@ def respond(handler_input, response_file, data_map={'test': 'test'}):
 
 def get_bus(handler_input, token, preset_id):
     logger.info(f'Getting Bus at preset {preset_id}...')
-    bus_id, direction_id, stop_id = utils.get_bus(token, preset_id)
+    agency, bus_id, direction_id, stop_id = utils.get_bus(token, preset_id)
     logger.info(f'Bus retrieved was {bus_id} at {stop_id}')
 
     if not bus_id or not stop_id:
         return respond(handler_input, "no_preset_response", {
             'preset_id': preset_id
         })
-    return check_bus(handler_input, bus_id, direction_id, stop_id, preset_id)
+    return check_bus(handler_input, agency, bus_id, direction_id, stop_id, preset_id)
 
-def check_bus(handler_input, bus_id, direction_id, stop_id, preset_id = None, notify_account_linking = False):
-    minutes, type, bus, stop, station = __get_agency(bus_id).check_bus(bus_id, direction_id, stop_id)
+def check_bus(handler_input, agency, bus_id, direction_id, stop_id, preset_id = None, notify_account_linking = False):
+    minutes, type, bus, stop, station = __get_agency(agency).check_bus(bus_id, direction_id, stop_id)
 
     logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:
@@ -141,9 +126,11 @@ def check_bus(handler_input, bus_id, direction_id, stop_id, preset_id = None, no
             'Check the alexa app for details in the Transit Buddy skills page.' if notify_account_linking else ''
     })
 
-def __get_agency(bus_id):
-    if bus_id in ['Red', 'Blue', 'G', 'Brn', 'P', 'Y', 'Pink', 'Org']:
+def __get_agency(agency):
+    if agency == 'Chicago CTA Train':
         return ChicagoCTATrain()
+    elif agency == 'Chicago Pace Bus':
+        return ChicagoPaceBus()
     else:
         return ChicagoCTABus()
 
@@ -153,6 +140,6 @@ sb.add_renderer(JinjaTemplateRenderer())
 handler = sb.lambda_handler()
 
 if __name__ == '__main__':
-    # print(utils.get_bus('abcde'))
-    print(__get_agency("Blue").check_bus("Blue", "30375"))
+    print(utils.get_bus('abcde'))
+    # print(__get_agency("Blue").check_bus("Blue", "30375"))
     

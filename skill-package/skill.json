@@ -5,12 +5,12 @@
         "en-US": {
           "summary": "Ask Alexa when to begin your next commute",
           "examplePhrases": [
-            "Alexa, ask TransitBuddy to get my bus",
-            "Alexa, ask TransitBuddy to get my train",
-            "Alexa, ask TransitBuddy to get preset 2"
+            "Alexa, ask TransitBuddy for preset 1",
+            "Alexa, ask TransitBuddy for preset 2",
+            "Alexa, ask TransitBuddy for preset 3"
           ],
           "name": "TransitBuddy",
-          "description": "TransitBuddy helps you get the estimated arrival time of your buses and trains.\n\nCurrently supports the following agencies:\nChicago CTA Bus\nChicago CTA Train.\nIf you'd like to see your bus or train on TransitBuddy, please leave a comment in the reviews.\n\nSimply ask this question:\n\nAlexa... ask TransitBuddy to check bus 151 from stop 1108\n\nFor a list of stops, visit the CTA bus website. http://www.transitchicago.com/riding_cta/systemguide/buses.aspx\n\nFor even more simplicity, you can save your bus number and stop number to multiple presets. We updated this skill to provide you a beautiful user interface for adding your presets. Please visit mytransitbuddy.com to create an account and link to this TransitBuddy Alexa skill.\n\nYou can quickly retrieve the bus information with this command:\n\n\"Alexa... ask TransitBuddy to get my bus\"\n\"Alexa... ask TransitBuddy to get my bus for preset 2\"\n\nFor questions and suggestions for this skill, please email us at yzdevelopment@yahoo.com.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
+          "description": "TransitBuddy helps you get the estimated arrival time of your buses and trains.\n\nCurrently supports the following agencies:\nChicago CTA Bus\nChicago CTA Train\nChicago Pace Bus\n\nIf you'd like to see your bus or train on TransitBuddy, please leave a comment in the reviews.\n\nAfter enabling this skill, you will be redirected to create a MyTransitBuddy account. This acocunt will allow you to set presets with route and stop information. Then, you can simply ask this question:\n\nAlexa... ask TransitBuddy for preset 1.\n\nFor adding or updating presets, please visit www.mytransitbuddy.com.\n\nIf you enjoy TransitBuddy or have suggestions, please leave a comment in your Alexa app. This will help us improve our skill for you and other users.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
           "keywords": [
             "Chicago",
             "cta",
@@ -20,9 +20,10 @@
             "transportation",
             "train",
             "commute",
-            "transport"
+            "transport",
+            "pace"
           ],
-          "updatesDescription": "Adding Chicago CTA Train",
+          "updatesDescription": "Adding Chicago Pace Bus",
           "smallIconUri": "file://assets/en-US_smallIcon.png",
           "largeIconUri": "file://assets/en-US_largeIcon.png"
         }
