@@ -24,7 +24,7 @@ def get_bus(token, preset=1):
                 item['directionId']['S'] if 'directionId' in item else None, \
                     item['stopId']['S']
     except (KeyError, IndexError):
-        return None, None, None
+        return None, None, None, None
 
 def __get_username(token):
     client = boto3.client('cognito-idp', region_name='us-east-2')

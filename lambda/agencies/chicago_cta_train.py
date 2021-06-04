@@ -63,4 +63,4 @@ class ChicagoCTATrain(Agency):
 if __name__ == '__main__':
     agency = ChicagoCTATrain()
     # print(agency.get_bus('', '1'))
-    print(agency.check_bus('Blue', '30375'))
+    print(agency.check_bus('Blue', None, '30001'))
