@@ -10,9 +10,9 @@
             "Alexa, ask TransitBuddy for preset 3"
           ],
           "name": "TransitBuddy",
-          "description": "TransitBuddy helps you get the estimated arrival time of your buses and trains.\n\nCurrently supports the following agencies:\nChicago CTA Bus\nChicago CTA Train\nChicago Pace Bus\n\nIf you'd like to see your bus or train on TransitBuddy, please leave a comment in the reviews.\n\nAfter enabling this skill, you will be redirected to create a MyTransitBuddy account. This acocunt will allow you to set presets with route and stop information. Then, you can simply ask this question:\n\nAlexa... ask TransitBuddy for preset 1.\n\nFor adding or updating presets, please visit www.mytransitbuddy.com.\n\nIf you enjoy TransitBuddy or have suggestions, please leave a comment in your Alexa app. This will help us improve our skill for you and other users.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
+          "description": "TransitBuddy helps you get the estimated arrival time of your buses and trains.\n\nCurrently supports the following agencies:\nChicago CTA Bus\nChicago CTA Train\nChicago Pace Bus\nUniversity of Michigan Magic Bus\n\nIf you'd like to see your bus or train on TransitBuddy, please leave a comment in the reviews.\n\nAfter enabling this skill, you will be redirected to create a MyTransitBuddy account. This acocunt will allow you to set presets with route and stop information. Please visit www.mytransitbuddy.com to add your presets. Then, you can simply ask this question:\n\nAlexa... ask TransitBuddy for preset 1.\n\nFor adding or updating presets, please visit www.mytransitbuddy.com.\n\nIf you enjoy TransitBuddy or have suggestions, please leave a comment in your Alexa app. This will help us improve our skill for you and other users.\n\nCredits:\nIcon made by Freepik from www.flaticon.com",
           "keywords": [
-            "Chicago",
+            "chicago",
             "cta",
             "bus",
             "travel",
@@ -21,7 +21,11 @@
             "train",
             "commute",
             "transport",
-            "pace"
+            "pace",
+            "michigan",
+            "university of michigan",
+            "magic bus",
+            "mbus"
           ],
           "updatesDescription": "Adding Chicago Pace Bus",
           "smallIconUri": "file://assets/en-US_smallIcon.png",

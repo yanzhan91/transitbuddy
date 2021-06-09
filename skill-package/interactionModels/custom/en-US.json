@@ -46,8 +46,13 @@
                     "samples": [
                         "stop",
                         "exit",
-                        "cancel",
                         "nevermind"
+                    ]
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "cancel"
                     ]
                 },
                 {

@@ -9,6 +9,7 @@ from ask_sdk_jinja_renderer import JinjaTemplateRenderer
 from agencies.chicago_cta_bus import ChicagoCTABus
 from agencies.chicago_cta_train import ChicagoCTATrain
 from agencies.chicago_pace_bus import ChicagoPaceBus
+from agencies.umich_magic_bus import UMichMagicBus
 
 import utils
 
@@ -128,9 +129,13 @@ def check_bus(handler_input, agency, bus_id, direction_id, stop_id, preset_id = 
 
 def __get_agency(agency):
     if agency == 'Chicago CTA Train':
+        return ChicagoCTABus()
+    elif agency == 'Chicago CTA Train':
         return ChicagoCTATrain()
     elif agency == 'Chicago Pace Bus':
         return ChicagoPaceBus()
+    elif agency == 'UMich Magic Bus':
+        return UMichMagicBus()
     else:
         return ChicagoCTABus()
 
@@ -140,6 +145,6 @@ sb.add_renderer(JinjaTemplateRenderer())
 handler = sb.lambda_handler()
 
 if __name__ == '__main__':
-    print(utils.get_bus('eyJraWQiOiI4TElDRXhvV2R5NWNzQUV6TlB2dkp6N3dlbGE5djdwRVFhRE5FVkphT05vPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI4OGRlMDNhZC0yNDYyLTQxZjAtOGEzYS1iN2EyZjc0MzY3YzkiLCJldmVudF9pZCI6IjAwNzVmZTNjLTBhOTItNDNhNi1iZjFiLWQ1NjJiMGI3ZTg1MSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4gb3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2MjE4MzkyOTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0yX2pnbXJjOGxLdCIsImV4cCI6MTYyMjc3OTAxOSwiaWF0IjoxNjIyNzc1NDE5LCJ2ZXJzaW9uIjoyLCJqdGkiOiI4N2M3NmZhMy03NjkxLTQwMTItYTljMS1iYWYyZWNkNTEyZDUiLCJjbGllbnRfaWQiOiI1bGsyZnZtdDdlcGRndmg3dmk2MzB0djhmMiIsInVzZXJuYW1lIjoiODhkZTAzYWQtMjQ2Mi00MWYwLThhM2EtYjdhMmY3NDM2N2M5In0.sUmMFo3Sq06Kb67DMPz63sVrLBOYQzIxxAZkbDTjJ8DaQLb4YbGPJDnVWXYeogAc3_W-TD-7M1Xr1FKkpeoFdZFFM54A43q8j0qFr4m7rvPgpte55PkNT06DVbn8gv8BhIU3UlWlv8Mc6qs2YaEqmzVWXIAjNcxGNBHHE2s37jEJ3aSjvxsN6QhhI5W6gHaYI2RfeN-EfBa8vUVhIIuGNZsYD7TloO8H4oY7aV37EvDI_lH9VRc7z7YPZygNF2vlcrIyXaOhGavxS844zgaKa0wjhZxcBJT1QQufaSBWZjMZeDhlPtKzYm7Z9q4eMJ2K1y3RFZ-W3qz3cZvy3Oy7eg', preset=10))
+    print(utils.get_bus('eyJraWQiOiI4TElDRXhvV2R5NWNzQUV6TlB2dkp6N3dlbGE5djdwRVFhRE5FVkphT05vPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI4OGRlMDNhZC0yNDYyLTQxZjAtOGEzYS1iN2EyZjc0MzY3YzkiLCJldmVudF9pZCI6IjAwNzVmZTNjLTBhOTItNDNhNi1iZjFiLWQ1NjJiMGI3ZTg1MSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4gb3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2MjE4MzkyOTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0yX2pnbXJjOGxLdCIsImV4cCI6MTYyMjc3OTAxOSwiaWF0IjoxNjIyNzc1NDE5LCJ2ZXJzaW9uIjoyLCJqdGkiOiI4N2M3NmZhMy03NjkxLTQwMTItYTljMS1iYWYyZWNkNTEyZDUiLCJjbGllbnRfaWQiOiI1bGsyZnZtdDdlcGRndmg3dmk2MzB0djhmMiIsInVzZXJuYW1lIjoiODhkZTAzYWQtMjQ2Mi00MWYwLThhM2EtYjdhMmY3NDM2N2M5In0.sUmMFo3Sq06Kb67DMPz63sVrLBOYQzIxxAZkbDTjJ8DaQLb4YbGPJDnVWXYeogAc3_W-TD-7M1Xr1FKkpeoFdZFFM54A43q8j0qFr4m7rvPgpte55PkNT06DVbn8gv8BhIU3UlWlv8Mc6qs2YaEqmzVWXIAjNcxGNBHHE2s37jEJ3aSjvxsN6QhhI5W6gHaYI2RfeN-EfBa8vUVhIIuGNZsYD7TloO8H4oY7aV37EvDI_lH9VRc7z7YPZygNF2vlcrIyXaOhGavxS844zgaKa0wjhZxcBJT1QQufaSBWZjMZeDhlPtKzYm7Z9q4eMJ2K1y3RFZ-W3qz3cZvy3Oy7eg', preset=1))
     # print(__get_agency("Blue").check_bus("Blue", "30375"))
     
