@@ -34,7 +34,7 @@ class UMichMagicBus(Agency):
         route = preset.route_id
         direction = preset.direction_name
         stop = preset.stop_name
-        return minutes, route, direction, stop
+        return minutes, f"Magic Bus {route} {direction} at stop {stop}"
 
 if __name__ == '__main__':
     agency = UMichMagicBus()

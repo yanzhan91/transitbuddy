@@ -34,17 +34,20 @@ class ChicagoCTABus(Agency):
         route = preset.route_id
         direction = preset.direction_name
         stop = preset.stop_name
-        return minutes, route, direction, stop
+        return minutes, f"CTA bus {route} {direction} at stop {stop}"
 
 if __name__ == '__main__':
     agency = ChicagoCTABus()
     print(agency.check_bus(Preset.create_test_preset(
         {
-            "routeId": "7",
-            "routeName": "7 - Harrison",
-            "directionId": "",
-            "directionName": "",
-            "stopId": "156",
-            "stopName": "Harrison & Lockwood",
+            "agency": "Chicago CTA Bus",
+            "directionId": "Northbound",
+            "directionName": "Northbound",
+            "presetId": 3,
+            "routeId": "2",
+            "routeName": "2 - Hyde Park Express",
+            "stopId": "755",
+            "stopName": "Illinois & Peshtigo",
+            "userId": "88de03ad-2462-41f0-8a3a-b7a2f74367c9"
         }
     )))

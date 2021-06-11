@@ -49,27 +49,26 @@ def fallback_handler(handler_input):
 @sb.request_handler(can_handle_func=is_intent_name("GetBusIntent"))
 def get_bus_handler(handler_input):
     preset_id = get_slot_value(handler_input, 'preset_id', '1')
-    logger.info(f'Getting Bus at preset {preset_id}...')
+    logger.info(f'Getting Route at preset {preset_id}...')
 
     user = handler_input.request_envelope.context.system.user
     token = user.access_token;
 
     preset = utils.get_bus(token, preset_id)
-    logger.info(f'Bus retrieved was {preset.bus_id} at {preset.stop_id}')
+    logger.info(f'Route retrieved was {preset.route_id} at {preset.stop_id}')
 
     if not preset:
         return respond(handler_input, "no_preset_response", {
             'preset_id': preset_id
         })
 
-    minutes, route_text, direction_text, stop_text, = __get_agency(preset.agency_name).check_bus(preset)
+    minutes, route_response_text, = __get_agency(preset.agency_name).check_bus(preset)
+    route_response_text = route_response_text.replace('&', 'and')
 
     logger.info('Minutes received: %s' % minutes)
     if len(minutes) == 0:
         return respond(handler_input, 'no_bus_response', {
-            'route_text': route_text,
-            'direction_text': direction_text,
-            'stop_text': stop_text,
+            'route_response_text': route_response_text,
             'preset_id': preset.preset_id
         })
     minute_strings = []
@@ -77,9 +76,7 @@ def get_bus_handler(handler_input):
         minute_strings.append('%s minutes away' % minute)
 
     return respond(handler_input, "bus_time_response", {
-        'route_text': route_text,
-        'direction_text': direction_text,
-        'stop_text': stop_text,
+        'route_response_text': route_response_text,
         'minutes': ' <break time=\\"200ms\\"/> and '.join(minute_strings),
         'card_minutes': ' and '.join(minute_strings),
         'preset_id': preset.preset_id
@@ -106,7 +103,7 @@ def respond(handler_input, response_file, data_map={'test': 'test'}):
     return handler_input.generate_template_response(response_file, data_map, file_ext='jinja')
 
 def __get_agency(agency):
-    if agency == 'Chicago CTA Train':
+    if agency == 'Chicago CTA Bus':
         return ChicagoCTABus()
     elif agency == 'Chicago CTA Train':
         return ChicagoCTATrain()

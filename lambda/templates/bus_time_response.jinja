@@ -1,12 +1,12 @@
 {
     "outputSpeech": {
         "type": "SSML",
-        "ssml": "<speak>At preset {{ preset_id }}, the next {{ route_text }} heading {{direction_text}} at stop {{stop_text}} <break time=\"300ms\"/> is {{ minutes }}.</speak>"
+        "ssml": "<speak>At preset {{ preset_id }}, the next {{route_response_text}} <break time=\"300ms\"/> is {{ minutes }}.</speak>"
     },
     "card": {
         "type": "Simple",
         "title": "TransitBuddy Transit Status",
-        "content": "The next {{ route_text }} heading {{direction_text}} at stop {{ stop_text }}, is {{ card_minutes }}."
+        "content": "The next {{route_response_text}}, is {{ card_minutes }}."
     },
     "shouldEndSession": true
 }

@@ -60,7 +60,7 @@ class ChicagoCTATrain(Agency):
         route = preset.route_name.split(' ')
         direction = preset.direction_name
         stop = preset.stop_name
-        return minutes, f"{route[0]} {route[1]}", direction, stop
+        return minutes, f"CTA train {direction} {route[0]} {route[1]} at stop {stop}"
 
 if __name__ == '__main__':
     agency = ChicagoCTATrain()

@@ -68,7 +68,7 @@ class ChicagoPaceBus(Agency):
         route = preset.route_name.split(' - ')[0]
         direction = preset.direction_name
         stop = preset.stop_name
-        return minutes, route, direction, stop
+        return minutes, f"Pace bus {route} heading {direction} at stop {stop}"
 
 
 if __name__ == '__main__':
