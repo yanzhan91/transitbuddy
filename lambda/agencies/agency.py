@@ -7,7 +7,7 @@ from botocore.exceptions import ClientError
 
 class Agency:
     @abstractmethod
-    def check_bus(self, bus_id, direction_id, stop_id):
+    def check_bus(self, preset):
         pass
 
     @abstractmethod

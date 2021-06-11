@@ -1,21 +1,27 @@
+if __name__ == '__main__':
+    import os
+    import sys
+
+    BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sys.path.append(BASE_PATH)
+
 import requests
 from datetime import datetime, timezone, timedelta
 import math
 
-if __name__ == '__main__':
-    from agency import Agency
-else:
-    from agencies.agency import Agency
+from agencies.agency import Agency
+from models.preset import Preset
 
 class ChicagoPaceBus(Agency):
 
-    def check_bus(self, bus_id, direction_id, stop_id):
+    def check_bus(self, preset):
+
         response = requests.post(
             'https://tmweb.pacebus.com/TMWebWatch/Arrivals.aspx/getStopTimes',
             json={
-                "routeID": bus_id, 
-                "directionID": direction_id, 
-                "stopID": "21440", 
+                "routeID": preset.route_id, 
+                "directionID": preset.direction_id, 
+                "stopID": preset.stop_id, 
                 "tpID": 0, 
                 "useArrivalTimes": False
             }
@@ -26,17 +32,17 @@ class ChicagoPaceBus(Agency):
         bustime_response = response.json()['d']['routeStops']
 
         if len(bustime_response) == 0:
-            return minutes, 'bus', bus_id, stop_id, ''
+            return self.__create_response(minutes, preset)
 
         stops = bustime_response[0]['stops']
 
         if len(stops) == 0:
-            return minutes, 'bus', bus_id, stop_id, ''
+            return self.__create_response(minutes, preset)
 
         predictions = stops[0]['crossings']
 
         if not predictions or len(predictions) == 0:
-            return minutes, 'bus', bus_id, stop_id, ''
+            return self.__create_response(minutes, preset)
 
         for prdt in predictions:
             minute = self.__get_predictions(prdt)
@@ -45,7 +51,7 @@ class ChicagoPaceBus(Agency):
             if len(minutes) == 2:
                 break
 
-        return minutes, 'bus', bus_id, stop_id, None
+        return self.__create_response(minutes, preset)
 
     def __get_predictions(self, prdt):
         now = datetime.now(tz=timezone(timedelta(hours=-5)))
@@ -58,6 +64,22 @@ class ChicagoPaceBus(Agency):
         total_seconds = time_delta.total_seconds()
         return math.floor(total_seconds / 60)
 
+    def __create_response(self, minutes, preset):
+        route = preset.route_name.split(' - ')[0]
+        direction = preset.direction_name
+        stop = preset.stop_name
+        return minutes, route, direction, stop
+
+
 if __name__ == '__main__':
     agency = ChicagoPaceBus()
-    print(agency.check_bus('23', '1', '21440'))
+    print(agency.check_bus(Preset.create_test_preset(
+        {
+            "routeId": "8",
+            "routeName": "208 - Golf Road",
+            "directionId": "1",
+            "directionName": "East",
+            "stopId": "9453",
+            "stopName": "1111 Plaza Dr"
+        }
+    )))

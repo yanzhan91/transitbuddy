@@ -1,13 +1,17 @@
-import re
+if __name__ == '__main__':
+    import os
+    import sys
+
+    BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sys.path.append(BASE_PATH)
+
 import requests
 import json
 from datetime import datetime, timedelta, timezone
 import math
 
-if __name__ == '__main__':
-    from agency import Agency
-else:
-    from agencies.agency import Agency
+from agencies.agency import Agency
+from models.preset import Preset
 
 train_color_map = {
     "Red" : "red",
@@ -22,11 +26,11 @@ train_color_map = {
 
 class ChicagoCTATrain(Agency):
 
-    def check_bus(self, bus_id, _, stop_id):
+    def check_bus(self, preset):
         secrets = self._get_secret()
         key = json.loads(secrets)['transitbuddy_cta_train_api_key']
         response = requests.get('http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?'
-            f'key={key}&rt={bus_id}&stpid={stop_id}&outputType=json')
+            f'key={key}&rt={preset.route_id}&stpid={preset.stop_id}&outputType=json')
 
         minutes = []
 
@@ -34,24 +38,16 @@ class ChicagoCTATrain(Agency):
 
         if ('errCd' in traintime_response and traintime_response['errCd'] != '0') \
             or 'eta' not in traintime_response:
-            return minutes, 'train', train_color_map[bus_id], stop_id, None
+            return self.__create_response(minutes, preset)
 
-        predictions = traintime_response['eta']
-
-        if len(predictions) == 0:
-            return minutes, 'train', train_color_map[bus_id], stop_id, None
-
-        for prdt in predictions:
-            # print(f"{prdt['arrT']} - {prdt['staNm']} - {prdt['rt']} - {prdt['destNm']}")
+        for prdt in traintime_response['eta']:
             minute = self.__get_predictions(prdt)
             if minute >= 0:
                 minutes.append(minute)
             if len(minutes) == 2:
                 break
 
-        station = re.sub('[/-]', ' and ', predictions[0]['staNm'])
-        
-        return minutes, 'train', train_color_map[bus_id], '', station
+        return self.__create_response(minutes, preset)
 
     def __get_predictions(self, prdt):
         predicted_time = datetime.strptime(prdt['arrT'] + ' -0500', '%Y-%m-%dT%H:%M:%S %z')
@@ -60,7 +56,21 @@ class ChicagoCTATrain(Agency):
         total_seconds = time_delta.total_seconds()
         return math.floor(total_seconds / 60)
 
+    def __create_response(self, minutes, preset):
+        route = preset.route_name.split(' ')
+        direction = preset.direction_name
+        stop = preset.stop_name
+        return minutes, f"{route[0]} {route[1]}", direction, stop
+
 if __name__ == '__main__':
     agency = ChicagoCTATrain()
-    # print(agency.get_bus('', '1'))
-    print(agency.check_bus('Blue', None, '30001'))
+    print(agency.check_bus(Preset.create_test_preset(
+        {
+            "routeId": "Red",
+            "routeName": "Red Line (Howard-95th/Dan Ryan)",
+            "directionId": "1",
+            "directionName": "Howard-bound",
+            "stopId": "30177",
+            "stopName": "63rd",
+        }
+    )))
