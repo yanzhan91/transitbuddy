@@ -27,7 +27,7 @@
             "magic bus",
             "mbus"
           ],
-          "updatesDescription": "Adding Chicago Pace Bus",
+          "updatesDescription": "Adding UMich Magic Bus",
           "smallIconUri": "file://assets/en-US_smallIcon.png",
           "largeIconUri": "file://assets/en-US_largeIcon.png"
         }
@@ -55,7 +55,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:484461028173:function:ask-TransitBuddy-default-ski-AlexaSkillFunctionDev-6C2D4kHwBgmA"
+          "uri": "arn:aws:lambda:us-east-1:484461028173:function:ask-TransitBuddy-default-skillS-AlexaSkillFunction-TPHNA1SH5L3V"
         }
       }
     },
