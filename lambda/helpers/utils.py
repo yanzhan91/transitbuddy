@@ -9,10 +9,7 @@ import boto3
 
 from models.preset import Preset
 
-def get_bus(token, preset=1):
-    username = __get_username(token)
-    # username = 'test'
-
+def get_bus(username, preset=1):
     client = boto3.client('dynamodb', region_name='us-east-2')
     response = client.get_item(
         Key={
@@ -28,12 +25,8 @@ def get_bus(token, preset=1):
 
     try:
         return Preset(response['Item'])
-    except (KeyError, IndexError):
-        return None
-
-def __get_username(token):
-    client = boto3.client('cognito-idp', region_name='us-east-2')
-    return client.get_user(AccessToken=token)['Username']
+    except (KeyError, IndexError) as e:
+        raise e
 
 if __name__ == '__main__':
     print(get_bus(None))

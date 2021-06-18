@@ -1,4 +1,5 @@
 import logging
+import boto3
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import is_intent_name, is_request_type
@@ -51,21 +52,35 @@ def get_bus_handler(handler_input):
     preset_id = get_slot_value(handler_input, 'preset_id', '1')
     logger.info(f'Getting Route at preset {preset_id}...')
 
-    user = handler_input.request_envelope.context.system.user
-    token = user.access_token;
+    preset = None
+    username = None
 
-    preset = utils.get_bus(token, preset_id)
-    logger.info(f'Route retrieved was {preset.route_id} at {preset.stop_id}')
+    try:
+        user = handler_input.request_envelope.context.system.user
+        token = user.access_token;
+        username = __get_username(token)
+        # username = 'test'
+        logger.info(f"Getting route for preset {preset_id} for user {username}")
+        preset = utils.get_bus(username, preset_id)
+    except Exception as e:
+        logger.error(f"Unable to get route for preset {preset_id} for user {username}", exc_info=True)
 
     if not preset:
         return respond(handler_input, "no_preset_response", {
             'preset_id': preset_id
         })
 
-    minutes, route_response_text, = __get_agency(preset.agency_name).check_bus(preset)
+    logger.info(f'Route retrieved was {preset.route_id} at {preset.stop_id}')
+
+    try:
+        minutes, route_response_text, = __get_agency(preset.agency_name).check_bus(preset)
+    except Exception as e:
+        logger.error(f"Unable to check route for preset {preset_id} for user {username}", exc_info=True)
+        raise e
+
     route_response_text = route_response_text.replace('&', 'and')
 
-    logger.info('Minutes received: %s' % minutes)
+    logger.info(f"Minutes received for preset {preset_id} for user {username} is {minutes}")
     if len(minutes) == 0:
         return respond(handler_input, 'no_bus_response', {
             'route_response_text': route_response_text,
@@ -113,6 +128,10 @@ def __get_agency(agency):
         return UMichMagicBus()
     else:
         return ChicagoCTABus()
+
+def __get_username(token):
+    client = boto3.client('cognito-idp', region_name='us-east-2')
+    return client.get_user(AccessToken=token)['Username']
 
 sb.add_loader(FileSystemTemplateLoader(dir_path="templates", encoding='utf-8'))
 sb.add_renderer(JinjaTemplateRenderer())
