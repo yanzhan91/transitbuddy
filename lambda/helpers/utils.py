@@ -23,10 +23,7 @@ def get_bus(username, preset=1):
         TableName='transitbuddy_presets-dev',
     )
 
-    try:
-        return Preset(response['Item'])
-    except (KeyError, IndexError) as e:
-        raise e
+    return Preset(response['Item']) if 'Item' in response else None
 
 if __name__ == '__main__':
     print(get_bus(None))

@@ -58,6 +58,9 @@ def get_bus_handler(handler_input):
     try:
         user = handler_input.request_envelope.context.system.user
         token = user.access_token;
+        if token == None:
+            logger.warn(f"Token not found: {user}")
+            return respond(handler_input, "account_linking_response")
         username = __get_username(token)
         # username = 'test'
         logger.info(f"Getting route for preset {preset_id} for user {username}")
