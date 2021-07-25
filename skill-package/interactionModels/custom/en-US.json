@@ -31,7 +31,14 @@
                         "where's my bus for preset {preset_id}",
                         "where's my bus at preset {preset_id}",
                         "where's my train for preset {preset_id}",
-                        "where's my train at preset {preset_id}"
+                        "where's my train at preset {preset_id}",
+                        "can you tell me where preset {preset_id} is",
+                        "can you tell me where my bus is",
+                        "can you tell me where my train is",
+                        "give me info on preset {preset_id}",
+                        "i want to know about preset {preset_id}",
+                        "what's up with my bus",
+                        "what's up with my train"
                     ]
                 },
                 {
